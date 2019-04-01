@@ -6,6 +6,10 @@ class Linux
 public:
     Linux();
     ~Linux();
+    void uptime( );
+private:
+    int horas;
+    
 
 };
 
