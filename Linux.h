@@ -4,9 +4,15 @@
 class Linux
 {
 public:
-    Linux();
+
+    Linux( string );
+    
     ~Linux();
-    void uptime( );
+    
+    void upTime( );
+    
+    void setHoras( int  );
+    
 private:
     int horas;
     
