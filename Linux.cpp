@@ -254,7 +254,7 @@ Linux::Linux(const Linux &p):Distribuicao_Linux(),Contem_No_Respositorio()
     }
     
 
-    
+   
 Linux::~Linux()
 {
 }

@@ -23,6 +23,7 @@ string DistribuicoesLinux::info_Tabela_De_Distribuicoes()
         
         }
 }
+
 DistribuicoesLinux::~DistribuicoesLinux()
 {
 }
