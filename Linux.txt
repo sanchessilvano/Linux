@@ -1,1 +1,1 @@
-./Debug/main.cpp.o ./Debug/Linux.cpp.o   
+./Release/Repositorio.cpp.o ./Release/DistribuicoesLinux.cpp.o ./Release/Linux.cpp.o ./Release/main.cpp.o   

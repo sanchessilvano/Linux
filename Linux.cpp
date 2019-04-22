@@ -19,16 +19,17 @@ bool Linux::getLigado()
 
 
 //Construtor padrão
-Linux::Linux()
+Linux::Linux():Distribuicao_Linux(),Contem_No_Respositorio()
 {
     this->setDistribuicao("Distribuicao nao espececificada");
     
     this->setBuild(0);
     
+    DistribuicoesLinux * novaDistribuicao1 = new DistribuicoesLinux();
 }
 
 //CONSTRUTOR INFO
-Linux::Linux(const string &nomeDoUsuario, int aquiteturaDoSistema)
+Linux::Linux(const string &nomeDoUsuario, int aquiteturaDoSistema):Distribuicao_Linux()
 {
     this->nomeDoUsuario=nomeDoUsuario;
         
@@ -36,6 +37,9 @@ Linux::Linux(const string &nomeDoUsuario, int aquiteturaDoSistema)
         this->aquiteturaDoSistema = 0;
     else
         this->aquiteturaDoSistema=aquiteturaDoSistema;
+    
+    
+    DistribuicoesLinux * novaDistribuicao2 = new DistribuicoesLinux();
         
 }
     //end CONSTRUTOR info
@@ -58,13 +62,19 @@ Linux::Linux(const string &nomeDoUsuario, int aquiteturaDoSistema)
     {
         return aquiteturaDoSistema;
     }
+    
+    
     //end funcooes set e get de info
     
     
     //CONSTRUTOR SOBRECARREGADO 1
-Linux::Linux(const string &distribuicao)
+Linux::Linux(const string &distribuicao):Distribuicao_Linux(),Contem_No_Respositorio()
     {
         this->distribuicao=distribuicao;
+        
+        
+        
+        DistribuicoesLinux * novaDistribuicao3 = new DistribuicoesLinux();
     }
     //FIM CONSTRUTOR SOBRECARREGADO 1
     
@@ -79,12 +89,16 @@ Linux::Linux(const string &distribuicao)
     }
 
     //CONSTRUTOR SOBRECARREGADO 2
-Linux::Linux(const double &build)
+Linux::Linux(const double &build):Distribuicao_Linux(),Contem_No_Respositorio()
     {
         if(build<=0)
             this->build=0;
         else
         this->build=build;
+        
+        
+        
+        DistribuicoesLinux * novaDistribuicao4 = new DistribuicoesLinux();
     }
     
     void Linux::setBuild(double build_)
@@ -104,6 +118,8 @@ void Linux::checaUsuario()
     this->nome="Usuarrio nao localizado";
     
     this ->id=0;
+    
+    
 }
 
 void Linux::checaUsuario(string nome)
@@ -133,7 +149,7 @@ int Linux::getId()
 
 //CÓPIA DE CONSTRUTOR:
 
-Linux::Linux(const Linux &p)
+Linux::Linux(const Linux &p):Distribuicao_Linux(),Contem_No_Respositorio()
     {
        this->nomeDoUsuario=p.nomeDoUsuario;
         
@@ -141,13 +157,19 @@ Linux::Linux(const Linux &p)
         this->aquiteturaDoSistema = 0;
     else
         this->aquiteturaDoSistema=p.aquiteturaDoSistema;
+        
+        
     }
     
     
     //CONSTRUTOR COM CONST E STATIC
-    Linux::Linux(int numeroPessoas,double numeroDoKernel,string &dataDeCriacaoDoSistema,string checaIP)
+    Linux::Linux(int numeroPessoas,double numeroDoKernel,string &dataDeCriacaoDoSistema,string checaIP):Distribuicao_Linux()
     {
         numeroDeUsuarios++;
+        
+        
+       
+        DistribuicoesLinux * novaDistribuicao6 = new DistribuicoesLinux();
     }
         
    int Linux::numeroDeUsuarios=25000;
@@ -174,12 +196,61 @@ Linux::Linux(const Linux &p)
         return checaIP;
     }
     //CONSTRUTOR COM CONST E STATIC
-    Linux::Linux(const Linux &q,int r, double s,string t,string v)
+    Linux::Linux(const Linux &q,int r, double s,string t,string v):Distribuicao_Linux(),Contem_No_Respositorio()
     {
         numeroDeUsuarios=q.numeroDeUsuarios;
         numeroDoKernel=q.numeroDoKernel;
         this->getChecaIP()=q.getChecaIP();
         this->getdataDeCriacaoDoSistema()=q.getdataDeCriacaoDoSistema();
+        
+        
+        
+        DistribuicoesLinux * novaDistribuicao7 = new DistribuicoesLinux();
+    }
+    
+    //FUNÇÃO MOSTRA ARRAY COM VERSÕES DO KERNEL LINUX
+    
+    double Linux::versoesLinux[SIZEVEROES]={1.0,1.2,2.0,2.2,2.4,2.6,3.0,3.1,3.2};
+    double Linux::Mostra_versoes_Do_Linux()const    
+    {
+        for(int i=0;i<SIZEVEROES;i++)
+        {
+            
+            cout<<"versao: "<<versoesLinux[i]<<'\n';
+        
+        }
+    }
+    
+    //CONSTRUTOR DO ARRAY
+    //Linux::Linux(string tipo_De_Usuarios[SIZEUSUARIOS])
+    //{
+        
+    //}
+    string Linux::tipo_De_Usuarios[SIZEUSUARIOS]={"administrador","comum","ok"};
+    string Linux::mostraUsuarios()const
+    {
+        for(int j=0;j<SIZEUSUARIOS;j++)
+        {
+            cout<<"Tipos de Usuarios: "<<tipo_De_Usuarios[j]<<'\n';
+            
+        }
+    }
+    
+    
+    //FUNÇÃO INFO DA CLASSE BASE
+    static string infor()
+    {
+        DistribuicoesLinux * obj1 = new DistribuicoesLinux();
+        
+        obj1->info_Tabela_De_Distribuicoes();
+        
+        cout<<obj1->info_Tabela_De_Distribuicoes()<<'\t';
+        
+        Repositorio * obj2 = new Repositorio();
+        
+        obj2->info_respositorio();
+        
+        cout<<obj2->info_respositorio()<<'\n';
     }
     
 

@@ -1,6 +1,7 @@
 #include<locale.h>
 #include <stdio.h>
 #include "Linux.h"
+#include "DistribuicoesLinux.h"
 #include <iostream>
 #include"Linux.h"
 using std::cout;
@@ -56,6 +57,7 @@ setlocale(LC_ALL,"portuguese");
     
     cout<<"Nome do Usuario: "<<info.getNomeDoUsuario()<<endl;
     cout<<"Arquitetura do sistema: "<<info.getAquiteturaDoSistema()<<" bits"<<endl;
+    //cout<<"O tipo de usuario e: "<<info.mostra_Tipos_Usuarios()<<endl;
     //fiim objeto do construtor;
     
     //OBJETO DO CONST SOBRRECARREGADO 1
@@ -116,6 +118,22 @@ setlocale(LC_ALL,"portuguese");
     cout<<"COPIA DE Para checar o ip diggite: "<<copia_De_Propriedade.getChecaIP()<<'\n';
     cout<<"COPIA DE Data da criacao do Linux: "<<copia_De_Propriedade.getdataDeCriacaoDoSistema()<<'\n';
     Linux::showNumeroDeUsuarios();
-    return 0;
     
+    //IMPRIMINDO ARRAY STATIC
+    Linux tabela;
+    cout<<"Tabela de versoes do linux:"<<'\n';
+    cout<<tabela.Mostra_versoes_Do_Linux()<<'\n';
+    
+    //Linux::versoesLinux();
+    
+    
+    //SAIDA DAS CLASSES DE COMPOSIÇÃO
+    Linux adf;
+    cout<<"Usuarios: "<<'\n';
+    cout<<adf.mostraUsuarios()<<'\n';
+    
+    //Linux::infor();
+    
+    
+    return 0;
 }//end main

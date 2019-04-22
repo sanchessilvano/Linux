@@ -2,18 +2,18 @@
 ## Auto Generated makefile by CodeLite IDE
 ## any manual changes will be erased      
 ##
-## Debug
+## Release
 ProjectName            :=Linux
-ConfigurationName      :=Debug
-WorkspacePath          :=C:/Users/SILVANO/Documents/OperatingSystem
-ProjectPath            :=C:/Users/SILVANO/Documents/OperatingSystem/Linux
-IntermediateDirectory  :=./Debug
+ConfigurationName      :=Release
+WorkspacePath          :=C:/Users/Proeg/Documents/OperatingSystem
+ProjectPath            :=C:/Users/Proeg/Documents/OperatingSystem/Linux
+IntermediateDirectory  :=./Release
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=SILVANO
-Date                   :=14/04/2019
+User                   :=Proeg
+Date                   :=22/04/2019
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=g++
 SharedObjectLinkerName :=g++ -shared -fPIC
@@ -28,7 +28,7 @@ LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
 OutputFile             :=$(IntermediateDirectory)/$(ProjectName)
-Preprocessors          :=
+Preprocessors          :=$(PreprocessorSwitch)NDEBUG 
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E 
@@ -52,8 +52,8 @@ LibPath                := $(LibraryPathSwitch).
 AR       := ar rcus
 CXX      := g++
 CC       := gcc
-CXXFLAGS :=  -g -O0 -Wall $(Preprocessors)
-CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -O2 -Wall $(Preprocessors)
+CFLAGS   :=  -O2 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := as
 
@@ -62,7 +62,7 @@ AS       := as
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Linux.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/Repositorio.cpp$(ObjectSuffix) $(IntermediateDirectory)/DistribuicoesLinux.cpp$(ObjectSuffix) $(IntermediateDirectory)/Linux.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
 
 
 
@@ -81,11 +81,11 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
 MakeIntermediateDirs:
-	@$(MakeDirCommand) "./Debug"
+	@$(MakeDirCommand) "./Release"
 
 
 $(IntermediateDirectory)/.d:
-	@$(MakeDirCommand) "./Debug"
+	@$(MakeDirCommand) "./Release"
 
 PreBuild:
 
@@ -93,21 +93,37 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/SILVANO/Documents/OperatingSystem/Linux/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
+$(IntermediateDirectory)/Repositorio.cpp$(ObjectSuffix): Repositorio.cpp $(IntermediateDirectory)/Repositorio.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Proeg/Documents/OperatingSystem/Linux/Repositorio.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Repositorio.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Repositorio.cpp$(DependSuffix): Repositorio.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Repositorio.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Repositorio.cpp$(DependSuffix) -MM Repositorio.cpp
 
-$(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
+$(IntermediateDirectory)/Repositorio.cpp$(PreprocessSuffix): Repositorio.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Repositorio.cpp$(PreprocessSuffix) Repositorio.cpp
+
+$(IntermediateDirectory)/DistribuicoesLinux.cpp$(ObjectSuffix): DistribuicoesLinux.cpp $(IntermediateDirectory)/DistribuicoesLinux.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Proeg/Documents/OperatingSystem/Linux/DistribuicoesLinux.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/DistribuicoesLinux.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/DistribuicoesLinux.cpp$(DependSuffix): DistribuicoesLinux.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/DistribuicoesLinux.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/DistribuicoesLinux.cpp$(DependSuffix) -MM DistribuicoesLinux.cpp
+
+$(IntermediateDirectory)/DistribuicoesLinux.cpp$(PreprocessSuffix): DistribuicoesLinux.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/DistribuicoesLinux.cpp$(PreprocessSuffix) DistribuicoesLinux.cpp
 
 $(IntermediateDirectory)/Linux.cpp$(ObjectSuffix): Linux.cpp $(IntermediateDirectory)/Linux.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/SILVANO/Documents/OperatingSystem/Linux/Linux.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Linux.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Proeg/Documents/OperatingSystem/Linux/Linux.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Linux.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Linux.cpp$(DependSuffix): Linux.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Linux.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Linux.cpp$(DependSuffix) -MM Linux.cpp
 
 $(IntermediateDirectory)/Linux.cpp$(PreprocessSuffix): Linux.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Linux.cpp$(PreprocessSuffix) Linux.cpp
+
+$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Proeg/Documents/OperatingSystem/Linux/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
+
+$(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
@@ -115,6 +131,6 @@ $(IntermediateDirectory)/Linux.cpp$(PreprocessSuffix): Linux.cpp
 ## Clean
 ##
 clean:
-	$(RM) -r ./Debug/
+	$(RM) -r ./Release/
 
 

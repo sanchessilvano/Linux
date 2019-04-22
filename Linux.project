@@ -93,6 +93,10 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="Repositorio.cpp"/>
+    <File Name="Repositorio.h"/>
+    <File Name="DistribuicoesLinux.cpp"/>
+    <File Name="DistribuicoesLinux.h"/>
     <File Name="Linux.cpp"/>
     <File Name="Linux.h"/>
     <File Name="main.cpp"/>

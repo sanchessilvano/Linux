@@ -2,6 +2,8 @@
 #define LINUX_H
 #include<iostream>
 #include<string>
+#include "DistribuicoesLinux.h"
+#include "Repositorio.h"
 using namespace std;
 using std::string;
 using std::getline;
@@ -25,7 +27,12 @@ private:
     static double numeroDoKernel;
     const string checaIP="ifconfig";
     const static string dataDeCriacaoDoSistema;
-    
+    const static int SIZEVEROES=9;
+    static double versoesLinux[SIZEVEROES];
+    const static int SIZEUSUARIOS = 3;
+    static string tipo_De_Usuarios[SIZEUSUARIOS];
+    DistribuicoesLinux Distribuicao_Linux;
+    Repositorio Contem_No_Respositorio;
 
     
 public:
@@ -58,6 +65,7 @@ public:
     string getNomeDoUsuario()const;//const adicionado para o construtor de cópia
     void setAquiteturaDoSistema(int);
     int getAquiteturaDoSistema()const;//const adicionado para o construtor de cópia
+    
     //fim do construtor info
     
     
@@ -96,6 +104,17 @@ public:
    //CONSTRUTOR DE CÓPIA CONST E STATIC:
    Linux(const Linux&q,int,double,string,string);
    //FIM CONSTRUTOR DE CÓPIA CONST E STATIC:
+    
+    //FUNÇÃO MOSTRA ARRAY COM VERSÕES DO KERNEL LINUX
+    double Mostra_versoes_Do_Linux() const;
+    
+    //FUNÇÃO INFO DA CLASSE BASE
+   //Linux(string tipo_De_Usuarios[SIZEUSUARIOS]);
+   
+   string mostraUsuarios() const;
+   
+    static string infor();
+    
     Linux();
     ~Linux();
    
