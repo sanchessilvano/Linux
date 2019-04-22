@@ -23,7 +23,7 @@ public:
     Repositorio(string repositorio[SIZEREPOSITORIO]);
     
     string info_respositorio();
-
+//abc
 };
 
 #endif // REPOSITORIO_H

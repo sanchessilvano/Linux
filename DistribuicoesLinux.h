@@ -25,7 +25,7 @@ public:
     string info_Tabela_De_Distribuicoes();
 
 
-
+//abcs
 };
 
 #endif // DISTRIBUICOESLINUX_H

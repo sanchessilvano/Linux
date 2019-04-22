@@ -133,7 +133,7 @@ setlocale(LC_ALL,"portuguese");
     cout<<adf.mostraUsuarios()<<'\n';
     
     //Linux::infor();
-    
+//abc    
     
     return 0;
 }//end main
