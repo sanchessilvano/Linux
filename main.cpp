@@ -20,14 +20,9 @@ setlocale(LC_ALL,"portuguese");
     
     estado->setLigado(1);
     
-    if(estado->getLigado())
-    {
-        cout<<"\nSistema Operaccionnal Inicializado\n"<<endl;
-    }else{
-        cout<<"nSistema Operaccionnal nao Inicializado\n"<<endl;
-    }
+    estado->getLigado();
     
-    
+    delete estado;
     //FIM DA FUNCAO 1
     
     //FUNCAO 2
@@ -128,12 +123,39 @@ setlocale(LC_ALL,"portuguese");
     
     
     //SAIDA DAS CLASSES DE COMPOSIÇÃO
-    Linux adf;
-    cout<<"Usuarios: "<<'\n';
-    cout<<adf.mostraUsuarios()<<'\n';
+    //Linux adf;
+    //cout<<"Usuarios: "<<'\n';
+    //cout<<adf.mostraUsuarios()<<'\n';
+    //Linux *LC;
+    //cout<<LC->infor();
     
     //Linux::infor();
 //abc    
+    //PONTEIRO DA CLASSE
     
-    return 0;
+    Linux *ptrLinux = &info;//ponteiro aponta para o endereço do objeto info que esta localizado no contrutor info(nome do usuario)
+    
+    cout<<"Apontador da classe: \n";
+    cout<<"Apontador para o nome do Usuario retorna: "<<ptrLinux->getNomeDoUsuario()<<'\n';
+    
+    //delete ptrLinux;
+    
+    //retorno da função ponteiro
+    Linux funcionario1;
+    const int tam=2;
+    const string msg[tam]={"bom funcionario","mal funcionario"};
+    string recado="E verdade que\t";
+    funcionario1.caracteristicaFuncionario(&msg[0],&recado);
+    
+    cout<<"\n";
+    cout<<"Retorno da funcao com apontadores: \n";
+    cout<<recado<<'\n';
+    
+    //Retornno da função com ponteiro private e alocação de memória
+    Linux *asd;
+    asd = new Linux;
+    cout<<"\n";
+    cout<<"Id e: "<<asd->recebePtr_Id();
+    
+    delete asd;
 }//end main
