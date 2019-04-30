@@ -8,7 +8,7 @@ DistribuicoesLinux::DistribuicoesLinux()
      string distribuicoes[SIZEDISTRIBUICOES]={"Linux","Ubuntu","Fedrora","Debian"};
 }
 
-DistribuicoesLinux::DistribuicoesLinux(string distribuicoes[SIZEDISTRIBUICOES], string data_Lancamento_Distribuicao)
+DistribuicoesLinux::DistribuicoesLinux(string distribuicoes[SIZEDISTRIBUICOES], string &data_Lancamento_Distribuicao)
 {
     
 }

@@ -32,7 +32,7 @@ setlocale(LC_ALL,"portuguese");
     string nome;
     cout<<"Inciciando o relogio\n"<<meuSistema.getTempo()<<endl;
     
-    cout<<"\nEscolha o tempo de atividade da máquina em minutos\n"<<endl;
+    cout<<"\nEscolha o tempo de atividade da maquina em minutos\n"<<endl;
     cin>>contador;
     meuSistema.setTempo(contador);
     
@@ -43,7 +43,7 @@ setlocale(LC_ALL,"portuguese");
 	
     
     //objeto do construtor;
-    Linux info("Joao",64);
+    Linux info("Joao",32);
     
      
      
@@ -74,8 +74,9 @@ setlocale(LC_ALL,"portuguese");
     //SAIDA DDA FUNCAO SOBRRECARREGADA 1
     Linux usuario1;
     Linux usuario2;
-    usuario1.checaUsuario();
-    usuario2.checaUsuario("Jose");
+    
+    usuario1.checaUsuario(nome="");
+    usuario2.checaUsuario(nome="Raimundo");
     
     cout<<"\nSAIDA DA FUNCAO SOBRECARREGADA 1\n"<<endl;
     
@@ -156,6 +157,6 @@ setlocale(LC_ALL,"portuguese");
     asd = new Linux;
     cout<<"\n";
     cout<<"Id e: "<<asd->recebePtr_Id();
-    
+    cout<<"\n";
     delete asd;
 }//end main

@@ -1,7 +1,7 @@
 #ifndef LINUX_H
 #define LINUX_H
 #include<iostream>
-#include<string>
+#include<string.h>
 #include "DistribuicoesLinux.h"
 #include "Repositorio.h"
 using namespace std;
@@ -14,29 +14,9 @@ using std::endl;
 class Linux
 {
 
-private:
-    int horas=0;
-    int contado=0;
-    string nomeDoUsuario="Raimundo";
-    int aquiteturaDoSistema;
-    string distribuicao;
-    double build=0.0;    
-    bool ligado;
-    string nome;
-    int id=9;
-    static int numeroDeUsuarios;
-    static double numeroDoKernel;
-    const string checaIP="ifconfig";
-    const static string dataDeCriacaoDoSistema;
-    const static int SIZEVEROES=9;
-    static double versoesLinux[SIZEVEROES];
-    const static int SIZEUSUARIOS = 3;
-    static string tipo_De_Usuarios[SIZEUSUARIOS];
-    DistribuicoesLinux Distribuicao_Linux;
-    Repositorio Contem_No_Respositorio;
-    int *ptrBuil;
-    
 public:
+    Linux();
+    ~Linux();
     
     //CONSTRUTOR INFO
     Linux(const string &,int);
@@ -59,14 +39,28 @@ public:
     //FIM CONSTRUTOR COM CONST E STATIC
     
     //CONSTRUTOR DE CÓPIA CONST E STATIC:
-   Linux(const Linux&q,int,double,string,string);
-   //FIM CONSTRUTOR DE CÓPIA CONST E STATIC:
+    Linux(const Linux&q,int,double,string,string);
+    //FIM CONSTRUTOR DE CÓPIA CONST E STATIC:
    
-   //CONSTRUTOR INFO DA CLASSE BASE
-   Linux(string tipo_De_Usuarios[SIZEUSUARIOS]);
-   //FFIMCONSTRUTOR INFO DA CLASSE BASE
+    //CONSTRUTOR INFO DA CLASSE BASE
+    Linux(string tipo_De_Usuarios[]);
+    //FFIMCONSTRUTOR INFO DA CLASSE BASE
     
-    //----------------------------------FUNÇÕES----------------------------------------
+   
+ //----------------------------------MÉTODOS CONST----------------------------------------
+    string getNomeDoUsuario()const;//const adicionado para o construtor de cópia
+   
+    int getAquiteturaDoSistema()const;//const adicionado para o construtor de cópia
+   
+    string getChecaIP()const;
+   
+    string getdataDeCriacaoDoSistema()const;
+   
+    //FUNÇÃO MOSTRA ARRAY COM VERSÕES DO KERNEL LINUX
+    double Mostra_versoes_Do_Linux() const;
+//----------------------------------FIM MÉTODOS CONST----------------------------------------
+    
+    
     //FUNCAO 1: Da o booot no sistema
     void setLigado(int boot);
     
@@ -84,18 +78,20 @@ public:
     //fim da funcao
     
     
-    
     //FUNÇÕES DO CONSTRUTOR INFO
-    void setNomeDoUsuario(string);
-    string getNomeDoUsuario()const;//const adicionado para o construtor de cópia
+    void setNomeDoUsuario(string&);
+    
     void setAquiteturaDoSistema(int);
-    int getAquiteturaDoSistema()const;//const adicionado para o construtor de cópia
+    
+    
     //FIM FUNÇÕES DO CONSTRUTOR INFO
     
+    
     //FUNÇÕES DO CONSTRUTOR DISTRIBUIÇÃO
-    void setDistribuicao(string);
+    void setDistribuicao(string&);
     string getDistribuicao();
     //FIM FUNÇÕES DO CONSTRUTOR DISTRIBUIÇÃO
+    
     
     //FUNÇÕES CONSTRUTOR BUILD
     void setBuild(double);
@@ -104,26 +100,22 @@ public:
     
     
     //FUNCAO SOBRECARREGADA 1
-    void checaUsuario();
-    void checaUsuario(string nome);
-    void checaUsuario(int id);
+    //void checaUsuario();
+    void checaUsuario(string &nome);
+    int checaUsuario(int id);
     string getNome();
     int getId();
     
     //FUNÇÕES CONSTRUTOR COM CONST E STATIC
     static void showNumeroDeUsuarios();//metodo static
     double getnumeroDoKernel();
-    string getChecaIP()const;
-    string getdataDeCriacaoDoSistema()const;
     //FIMFUNÇÕES CONSTRUTOR COM CONST E STATIC
    
-   //FUNÇÃO MOSTRA ARRAY COM VERSÕES DO KERNEL LINUX
-    double Mostra_versoes_Do_Linux() const;
-    
-    
-   //string mostraUsuarios() const;
+   
+    //string mostraUsuarios() const;
    
     static string infor();
+    
     
     //Metodo ponteiro
     
@@ -132,16 +124,38 @@ public:
     //função ponteiro private
     int recebePtr_Id();
     
-
-    Linux();
-    ~Linux();
-   
+    //ALOCAÇÃO
+    void adicionaUsurio(const string &nomeDoUsuario);
     
+    void alocar(int);
     
+    void desalocar( );
     
-    
-//abc    
-
+private:
+    const string CHECAIP="ifconfig";
+    const static string DATADECRIACAODOSISTEMA;
+    const static int SIZEVEROES=9;
+    const static int SIZEUSUARIOS = 3;
+    const static int QUANTIVERSION = 10;
+    static double versoesLinux[SIZEVEROES];
+    static string tipo_De_Usuarios[SIZEUSUARIOS];
+    static int numeroDeUsuarios;
+    static double numeroDoKernel;
+    int horas=0;
+    int contado=0;
+    int id=9;
+    int aquiteturaDoSistema=1;
+    int *ptrBuil;
+    int quantUsuarios;
+    double build=0.0;    
+    bool ligado;
+    string distribuicao;
+    string nome;
+    string nomeDoUsuario="Raimundo";
+    string version[QUANTIVERSION];
+    string *nomesUsuarios;
+    DistribuicoesLinux Distribuicao_Linux;
+    Repositorio Contem_No_Respositorio;
 };
 
 #endif // LINUX_H

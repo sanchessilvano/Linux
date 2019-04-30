@@ -11,19 +11,18 @@ using std::endl;
 
 class Repositorio
 {
-    
-private: 
-const static int SIZEREPOSITORIO=3;
-static string repositorio[SIZEREPOSITORIO]; 
-
 
 public:
     Repositorio();
     ~Repositorio();
-    Repositorio(string repositorio[SIZEREPOSITORIO]);
+    Repositorio(string repositorio[]);
     
     string info_respositorio();
-//abc
+
+
+private: 
+const static int SIZEREPOSITORIO=3;
+static string repositorio[SIZEREPOSITORIO]; 
 };
 
 #endif // REPOSITORIO_H
