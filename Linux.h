@@ -14,6 +14,7 @@ using std::endl;
 class Linux
 {
 
+//----------------------------------CONSTRUTORES----------------------------------------    
 public:
     Linux();
     ~Linux();
@@ -39,40 +40,27 @@ public:
     //FIM CONSTRUTOR COM CONST E STATIC
     
     //CONSTRUTOR DE CÓPIA CONST E STATIC:
-    Linux(const Linux&q,int,double,string,string);
+    Linux(const Linux&p,const Linux &q);
     //FIM CONSTRUTOR DE CÓPIA CONST E STATIC:
    
     //CONSTRUTOR INFO DA CLASSE BASE
     Linux(string tipo_De_Usuarios[]);
     //FFIMCONSTRUTOR INFO DA CLASSE BASE
-    
+
+//----------------------------------FIM CONSTRUTORES----------------------------------------   
    
- //----------------------------------MÉTODOS CONST----------------------------------------
-    string getNomeDoUsuario()const;//const adicionado para o construtor de cópia
-   
-    int getAquiteturaDoSistema()const;//const adicionado para o construtor de cópia
-   
-    string getChecaIP()const;
-   
-    string getdataDeCriacaoDoSistema()const;
-   
-    //FUNÇÃO MOSTRA ARRAY COM VERSÕES DO KERNEL LINUX
-    double Mostra_versoes_Do_Linux() const;
-//----------------------------------FIM MÉTODOS CONST----------------------------------------
-    
-    
-    //FUNCAO 1: Da o booot no sistema
+   //FUNCAO 1: Da o booot no sistema
     void setLigado(int boot);
     
-    bool getLigado();
+    bool getLigado()const;
     
     //FUNCAO 2: Define o tempo de atividade da máquina
     
-    int tempoDeAtividade(int horas);
+    int tempoDeAtividade(int horas)const;
     
     void setTempo(int horas);
     
-    int getTempo();
+    int getTempo()const;
     
    
     //fim da funcao
@@ -81,21 +69,24 @@ public:
     //FUNÇÕES DO CONSTRUTOR INFO
     void setNomeDoUsuario(string&);
     
+    string getNomeDoUsuario()const;//const adicionado para o construtor de cópia
+   
     void setAquiteturaDoSistema(int);
     
+    int getAquiteturaDoSistema()const;//const adicionado para o construtor de cópia
     
     //FIM FUNÇÕES DO CONSTRUTOR INFO
     
     
     //FUNÇÕES DO CONSTRUTOR DISTRIBUIÇÃO
     void setDistribuicao(string&);
-    string getDistribuicao();
+    string getDistribuicao()const;
     //FIM FUNÇÕES DO CONSTRUTOR DISTRIBUIÇÃO
     
     
     //FUNÇÕES CONSTRUTOR BUILD
     void setBuild(double);
-    double getBuild();
+    double getBuild()const;
     //FIMFUNÇÕES CONSTRUTOR BUILD
     
     
@@ -103,23 +94,32 @@ public:
     //void checaUsuario();
     void checaUsuario(string &nome);
     int checaUsuario(int id);
-    string getNome();
-    int getId();
+    string getNome()const;
+    int getId()const;
+    
     
     //FUNÇÕES CONSTRUTOR COM CONST E STATIC
     static void showNumeroDeUsuarios();//metodo static
-    double getnumeroDoKernel();
-    //FIMFUNÇÕES CONSTRUTOR COM CONST E STATIC
+    
+    double getnumeroDoKernel()const;
+    
+    string getChecaIP()const;
    
+    string getdataDeCriacaoDoSistema()const;
+    //FIM FUNÇÕES CONSTRUTOR COM CONST E STATIC
    
+   //FUNÇÃO MOSTRA ARRAY COM VERSÕES DO KERNEL LINUX
+    double Mostra_versoes_Do_Linux() const;
+    
     //string mostraUsuarios() const;
    
-    static string infor();
+   //FUNÇÃO INFO DA CLASSE PRINCIPAL
+    string info_Principal()const;
     
     
     //Metodo ponteiro
     
-    void caracteristicaFuncionario(const string *ptr1, string *ptr2);
+    void caracteristicaFuncionario(const string *ptr1, string *ptr2)const;
     
     //função ponteiro private
     int recebePtr_Id();
@@ -130,7 +130,9 @@ public:
     void alocar(int);
     
     void desalocar( );
-    
+ 
+
+   
 private:
     const string CHECAIP="ifconfig";
     const static string DATADECRIACAODOSISTEMA;
@@ -142,7 +144,7 @@ private:
     static int numeroDeUsuarios;
     static double numeroDoKernel;
     int horas=0;
-    int contado=0;
+    int contador;
     int id=9;
     int aquiteturaDoSistema=1;
     int *ptrBuil;

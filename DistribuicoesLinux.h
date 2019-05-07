@@ -1,7 +1,7 @@
 #ifndef DISTRIBUICOESLINUX_H
 #define DISTRIBUICOESLINUX_H
 #include<iostream>
-#include<string>
+#include<string.h>
 using namespace std;
 using std::string;
 using std::getline;
@@ -15,13 +15,18 @@ class DistribuicoesLinux
 public:
     DistribuicoesLinux();
     ~DistribuicoesLinux();
-    DistribuicoesLinux(string distribuicoes[], string &data_Lancamento_Distribuicao);
-    string info_Tabela_De_Distribuicoes();
-
+    
+    DistribuicoesLinux(string &distribuicoes[SIZEDISTRIBUICOES], int data_Lancamento_Distribuicao[SIZEDISTRIBUICOES] );
+    
+    DistribuicoesLinux(const DistribuicoesLinux &p);
+    
+    //----------------------------------FIM CONSTRUTORES----------------------------------------  
+    string info_Tabela_De_Distribuicoes()const;
+    
 private:
-    const static int SIZEDISTRIBUICOES=5;
+    const static int SIZEDISTRIBUICOES=4;
     static string distribuicoes[SIZEDISTRIBUICOES];
-    string data_Lancamento_Distribuicao;
+    static int data_Lancamento_Distribuicao[SIZEDISTRIBUICOES];
 
 };
 

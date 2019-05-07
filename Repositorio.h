@@ -1,7 +1,7 @@
 #ifndef REPOSITORIO_H
 #define REPOSITORIO_H
 #include<iostream>
-#include<string>
+#include<string.h>
 using namespace std;
 using std::string;
 using std::getline;
@@ -15,9 +15,12 @@ class Repositorio
 public:
     Repositorio();
     ~Repositorio();
+    
     Repositorio(string repositorio[]);
     
-    string info_respositorio();
+    Repositorio(const Repositorio &p);
+    //----------------------------------FIM CONSTRUTORES----------------------------------------  
+    string info_Respositorio()const;
 
 
 private: 
