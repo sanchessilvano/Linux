@@ -91,7 +91,7 @@ Linux::Linux(int numeroPessoas,double numeroDoKernel,string &dataDeCriacaoDoSist
     nomesUsuarios = 0;
 }
 
-    
+   
 //CONSTRUTOR COM CONST E STATIC
 Linux::Linux(const Linux &p,const Linux &q):Distribuicao_Linux(),Contem_No_Respositorio()
 {
