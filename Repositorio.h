@@ -1,7 +1,7 @@
 #ifndef REPOSITORIO_H
 #define REPOSITORIO_H
 #include<iostream>
-#include<string.h>
+#include<string>
 using namespace std;
 using std::string;
 using std::getline;
@@ -16,16 +16,18 @@ public:
     Repositorio();
     ~Repositorio();
     
-    Repositorio(string repositorio[]);
+    Repositorio(const string [],int);
     
     Repositorio(const Repositorio &p);
     //----------------------------------FIM CONSTRUTORES----------------------------------------  
-    string info_Respositorio()const;
+    void setRepositoriosLinux(const string[],int);
+    
+    void info_Respositorio() const;
 
 
 private: 
-const static int SIZEREPOSITORIO=3;
-static string repositorio[SIZEREPOSITORIO]; 
+string *nomesProgramas;
+int sizenomesProgramas;
 };
 
 #endif // REPOSITORIO_H

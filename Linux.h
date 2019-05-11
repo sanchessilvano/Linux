@@ -1,7 +1,7 @@
 #ifndef LINUX_H
 #define LINUX_H
 #include<iostream>
-#include<string.h>
+#include<string>
 #include "DistribuicoesLinux.h"
 #include "Repositorio.h"
 using namespace std;
@@ -36,7 +36,7 @@ public:
     //fim do const ccópia
     
     //CONSTRUTOR COM CONST E STATIC
-    Linux(int numeroDeUsuarios,double numeroDoKernel,string &dataDeCriacaoDoSistema,string checaIP);
+    Linux(int numeroDeVersoesDoKernel,double versaoAtualDoDoKernelLinnux,string &dataDeCriacaoDoSistema,string checaIP);
     //FIM CONSTRUTOR COM CONST E STATIC
     
     //CONSTRUTOR DE CÓPIA CONST E STATIC:
@@ -50,9 +50,9 @@ public:
 //----------------------------------FIM CONSTRUTORES----------------------------------------   
    
    //FUNCAO 1: Da o booot no sistema
-    void setLigado(int boot);
+    void setEstado_Do_Sistema(int boot);
     
-    bool getLigado()const;
+    bool getEstado_Do_Sistema()const;
     
     //FUNCAO 2: Define o tempo de atividade da máquina
     
@@ -67,9 +67,9 @@ public:
     
     
     //FUNÇÕES DO CONSTRUTOR INFO
-    void setNomeDoUsuario(string&);
+    void setNomeDoSistema(const string &);
     
-    string getNomeDoUsuario()const;//const adicionado para o construtor de cópia
+    string getNomeDoSistema()const;//const adicionado para o construtor de cópia
    
     void setAquiteturaDoSistema(int);
     
@@ -79,8 +79,8 @@ public:
     
     
     //FUNÇÕES DO CONSTRUTOR DISTRIBUIÇÃO
-    void setDistribuicao(string&);
-    string getDistribuicao()const;
+    void setData_Da_Criacao(const string &);
+    string getData_Da_Criacao()const;
     //FIM FUNÇÕES DO CONSTRUTOR DISTRIBUIÇÃO
     
     
@@ -92,16 +92,16 @@ public:
     
     //FUNCAO SOBRECARREGADA 1
     //void checaUsuario();
-    void checaUsuario(string &nome);
-    int checaUsuario(int id);
-    string getNome()const;
+    void checaSistema(string &nomeDoSistema);
+    int checaSistema(int id);
+    string getNomeDoSistema();
     int getId()const;
     
     
     //FUNÇÕES CONSTRUTOR COM CONST E STATIC
-    static void showNumeroDeUsuarios();//metodo static
+    static void showNumeroDeVersoesDoKernel();//metodo static
     
-    double getnumeroDoKernel()const;
+    double getversaoAtualDoDoKernelLinnux()const;
     
     string getChecaIP()const;
    
@@ -114,35 +114,27 @@ public:
     //string mostraUsuarios() const;
    
    //FUNÇÃO INFO DA CLASSE PRINCIPAL
-    string info_Principal()const;
+    void info_Principal()const;
     
     
     //Metodo ponteiro
     
-    void caracteristicaFuncionario(const string *ptr1, string *ptr2)const;
+    void caracteristicaSistema(const string *ptr1, string *ptr2)const;
     
     //função ponteiro private
     int recebePtr_Id();
     
-    //ALOCAÇÃO
-    void adicionaUsurio(const string &nomeDoUsuario);
     
-    void alocar(int);
-    
-    void desalocar( );
- 
-
-   
 private:
-    const string CHECAIP="ifconfig";
+    const string COMANDOCHECAIP="ifconfig";
     const static string DATADECRIACAODOSISTEMA;
-    const static int SIZEVEROES=9;
+    const static int SIZEVERSOES=14;
     const static int SIZEUSUARIOS = 3;
     const static int QUANTIVERSION = 10;
-    static double versoesLinux[SIZEVEROES];
+    static double versoesLinux[SIZEVERSOES];
     static string tipo_De_Usuarios[SIZEUSUARIOS];
-    static int numeroDeUsuarios;
-    static double numeroDoKernel;
+    static int numeroDeVersoesDoKernel;
+    static double versaoAtualDoDoKernelLinnux;
     int horas=0;
     int contador;
     int id=9;
@@ -151,12 +143,13 @@ private:
     int quantUsuarios;
     double build=0.0;    
     bool ligado;
-    string distribuicao;
+    string Data_Da_Criacao;
     string nome;
     string nomeDoUsuario="Raimundo";
+    string nomeDoSistema="Ubuntu 12";
     string version[QUANTIVERSION];
     string *nomesUsuarios;
-    DistribuicoesLinux Distribuicao_Linux;
+    DistribuicoesLinux *Distribuicao_Linux;
     Repositorio Contem_No_Respositorio;
 };
 

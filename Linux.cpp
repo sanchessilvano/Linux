@@ -1,5 +1,5 @@
 #include "Linux.h"
-#include <string.h>
+#include <string>
 #include <iostream>
 using std::string;
 
@@ -8,47 +8,40 @@ using std::string;
 Linux::Linux()
 :Distribuicao_Linux(),Contem_No_Respositorio(), quantUsuarios( 0 )
 {
-    this->distribuicao="Distribuicao nao especificada";
+    this->Data_Da_Criacao="Data nao especificada";
     
     this->setBuild(0);
     
-    DistribuicoesLinux * novaDistribuicao1 = new DistribuicoesLinux();
-    
-    delete novaDistribuicao1;
-    
     nomesUsuarios = 0;
+    Distribuicao_Linux= 0;
     
 }
 
 
 //CONSTRUTOR INFO
-Linux::Linux(const string &nomeDoUsuario, int aquiteturaDoSistema)
+Linux::Linux(const string &nomeDoSistema, int aquiteturaDoSistema)
 :Distribuicao_Linux()
 {
-    this->nomeDoUsuario=nomeDoUsuario;
+    this->nomeDoSistema=nomeDoSistema;
         
     if(aquiteturaDoSistema<=0)
         this->aquiteturaDoSistema = 0;
     else
         this->aquiteturaDoSistema=aquiteturaDoSistema;
-    
-    DistribuicoesLinux * novaDistribuicao2 = new DistribuicoesLinux();
-    
-    delete novaDistribuicao2; 
         
+    Distribuicao_Linux= 0;
 }
 //end CONSTRUTOR info
 
 
 //CONSTRUTOR SOBRECARREGADO 1
-Linux::Linux(const string &distribuicao)
+Linux::Linux(const string &Data_Da_Criacao)
 :Distribuicao_Linux(),Contem_No_Respositorio()
 {
-    this->distribuicao=distribuicao;
+    this->Data_Da_Criacao=Data_Da_Criacao;
+    
+    Distribuicao_Linux= 0;
         
-    DistribuicoesLinux * novaDistribuicao3 = new DistribuicoesLinux();
-        
-    delete novaDistribuicao3;
 }
 
     
@@ -60,9 +53,8 @@ Linux::Linux(const double &build):Distribuicao_Linux(),Contem_No_Respositorio()
     else
         this->build=build;
         
-    DistribuicoesLinux * novaDistribuicao4 = new DistribuicoesLinux();
-        
-    delete novaDistribuicao4;
+    Distribuicao_Linux = 0;
+    
 }
 //FIM CONSTRUTOR SOBRECARREGADO 2
     
@@ -70,48 +62,49 @@ Linux::Linux(const double &build):Distribuicao_Linux(),Contem_No_Respositorio()
 //CÓPIA DE CONSTRUTOR:
 Linux::Linux(const Linux &p):Distribuicao_Linux(),Contem_No_Respositorio()
 {
-    this->nomeDoUsuario=p.nomeDoUsuario;
+    this->nomeDoSistema=p.nomeDoSistema;
         
     if(aquiteturaDoSistema<=0)
         this->aquiteturaDoSistema = 0;
     else
         this->aquiteturaDoSistema=p.aquiteturaDoSistema;
+        
+    Distribuicao_Linux= 0;
 }
     
     
 //CONSTRUTOR COM CONST E STATIC
-Linux::Linux(int numeroPessoas,double numeroDoKernel,string &dataDeCriacaoDoSistema,string checaIP):Distribuicao_Linux()
+Linux::Linux(int numeroDeVersoesDoKernel,double versaoAtualDoDoKernelLinnux,string &dataDeCriacaoDoSistema,string COMANDOCHECAIP):Distribuicao_Linux()
 {
-    numeroDeUsuarios++;
-        
-    DistribuicoesLinux * novaDistribuicao6 = new DistribuicoesLinux();
-        
-    delete novaDistribuicao6;
+    numeroDeVersoesDoKernel++;
         
     nomesUsuarios = 0;
-}
-
     
+    Distribuicao_Linux= 0;
+}
 //CONSTRUTOR COM CONST E STATIC
+
+//CONSTRUTOR DE CÓPIA COM CONST E STATIC
 Linux::Linux(const Linux &p,const Linux &q):Distribuicao_Linux(),Contem_No_Respositorio()
 {
-    numeroDeUsuarios=p.numeroDeUsuarios;
+    numeroDeVersoesDoKernel=p.numeroDeVersoesDoKernel;
     
-    numeroDoKernel=p.numeroDoKernel;
+    versaoAtualDoDoKernelLinnux=p.versaoAtualDoDoKernelLinnux;
     
     this->getChecaIP()=q.getChecaIP();
     
     this->getdataDeCriacaoDoSistema()=q.getdataDeCriacaoDoSistema();
     
-    DistribuicoesLinux * novaDistribuicao7 = new DistribuicoesLinux();
-        
-    delete novaDistribuicao7;
+    Distribuicao_Linux= 0;
+   
 }
 
     
 //CONSTRUTOR DO ARRAY
 Linux::Linux(string tipo_De_Usuarios[SIZEUSUARIOS])
 {
+    
+    Distribuicao_Linux= 0;
         
 }
 
@@ -119,34 +112,35 @@ Linux::Linux(string tipo_De_Usuarios[SIZEUSUARIOS])
 
 //----------------------------------MÉTODOS STATIC---------------------------------------- 
     //FUNÇÕES CONSTRUTOR COM CONST E STATIC
-    void Linux::showNumeroDeUsuarios()
+    void Linux::showNumeroDeVersoesDoKernel()
 {
-    cout<<"Numero de usuarios de Linux e ="<<numeroDeUsuarios<<endl;
+    cout<<"Numero de versoes do Kernel Linux e ="<<numeroDeVersoesDoKernel<<endl;
 }
     
 //----------------------------------FIM MÉTODOS STATIC----------------------------------------
 
 
 //FUNÇÃO 1
-void Linux::setLigado(int boot)
+void Linux::setEstado_Do_Sistema(int boot)
 {
     if(boot==1){
-        ligado=true;
+        this->ligado=true;
     }else if(boot==0){
-        ligado=false;
+        this->ligado=false;
     }
 }
 
 
 
-bool Linux::getLigado()const
+bool Linux::getEstado_Do_Sistema()const
 {
     if(ligado==1){
         cout<<"\nSistema Operaccionnal Inicializado\n"<<endl;
         
     }else if(ligado==0){
-        cout<<"\nSistema Operaccionnal nao Inicializado, deligando computador\n"<<endl;
-        exit(0);
+        cout<<"\nSistema Operaccionnal nao Inicializado, falha no boot\n"<<endl;
+        //exit(0);
+        return 0;
     }
     //return printf("\nSistema Operaccionnal Inicializado\n");    
 }
@@ -162,7 +156,7 @@ int Linux::tempoDeAtividade(int horas) const
 
 void Linux::setTempo(int horas_)
 {
-    horas=horas_;
+    this->horas=horas_;
 }
  
    
@@ -175,14 +169,14 @@ int Linux::getTempo()const
 
 
 //FUNÇÕES DO CONNSTRUTOR INFO
-void Linux::setNomeDoUsuario(string &nomeDoUsuario)
+void Linux::setNomeDoSistema(const string &nomeDoSistema_)
 {
-    this->nomeDoUsuario=nomeDoUsuario;
+    this->nomeDoSistema = nomeDoSistema_;
 }
 
-string Linux::getNomeDoUsuario()const
+string Linux::getNomeDoSistema()const
 {
-    return nomeDoUsuario;
+    return nomeDoSistema;
 }
 
 
@@ -209,14 +203,14 @@ int Linux::getAquiteturaDoSistema()const
     
     
 //FUNÇÕES CONSTRUTOR SOBRECARREGADO 1
-void Linux::setDistribuicao(string &distribuicao_)
+void Linux::setData_Da_Criacao(const string &Data_Da_Criacao_)
 {
-    distribuicao=distribuicao_;
+    this->Data_Da_Criacao = Data_Da_Criacao_;
 }
     
-string Linux::getDistribuicao()const
+string Linux::getData_Da_Criacao()const
 {
-    return distribuicao;
+    return Data_Da_Criacao;
 }
 //FIM FUNÇÕES CONSTRUTOR SOBRECARREGADO 1
 
@@ -224,7 +218,7 @@ string Linux::getDistribuicao()const
 //FUNÇÕES CONSTRUTOR SOBRECARREGADO 2
 void Linux::setBuild(double build_)
 {
-    build=build_;
+    this->build=build_;
 }
  
    
@@ -236,22 +230,22 @@ double Linux::getBuild()const
 
 
 //FUNCAO SOBRRECARREGAda 1
-void Linux::checaUsuario(string &nome)
+void Linux::checaSistema(string &nomeDoSistema)
 {
-    if(nome=="")
-        this->nome="Usuario nao especificado";
+    if(nomeDoSistema=="")
+        this->nomeDoSistema="Nome do sistema nao especificado";
     else
-        this-> nome=nome;
+        this-> nomeDoSistema=nomeDoSistema;
 }
 
 
-string Linux::getNome()const
+string Linux::getNomeDoSistema()
 {
-    return nome;
+    return nomeDoSistema;
 }
 
 
-int Linux::checaUsuario(int id)
+int Linux::checaSistema(int id)
 {
     if(id>=0)
         this->id=id;
@@ -268,21 +262,21 @@ int Linux::getId()const
 
 
 //FUNÇÕES CONSTRUTOR COM CONST E STATIC
-int Linux::numeroDeUsuarios=25000;
+int Linux::numeroDeVersoesDoKernel=14;
    
-double Linux::numeroDoKernel=5.0;
+double Linux::versaoAtualDoDoKernelLinnux=5.2;
 
 const string Linux::DATADECRIACAODOSISTEMA="1991";
    
    
-double Linux::getnumeroDoKernel()const
+double Linux::getversaoAtualDoDoKernelLinnux()const
 {
-    return numeroDoKernel;
+    return versaoAtualDoDoKernelLinnux;
 }
 
 string Linux::getChecaIP()const
 {
-    return CHECAIP;
+    return COMANDOCHECAIP;
 }
 
 
@@ -294,11 +288,11 @@ string Linux::getdataDeCriacaoDoSistema()const
 
 //FUNÇÃO MOSTRA ARRAY COM VERSÕES DO KERNEL LINUX
     
-double Linux::versoesLinux[SIZEVEROES]={1.0,1.2,2.0,2.2,2.4,2.6,3.0,3.1,3.2};
+double Linux::versoesLinux[SIZEVERSOES]={1.0,1.2,2.0,2.2,2.4,2.6,3.0,3.1,3.2,4.1,4.2,5.0,5.1,5.2};
 
 double Linux::Mostra_versoes_Do_Linux()const    
 {
-    for(int i=0;i<SIZEVEROES;i++)
+    for(int i=0;i<SIZEVERSOES;i++)
     {
             
         cout<<"versao: "<<versoesLinux[i]<<'\n';
@@ -324,22 +318,26 @@ string Linux::mostraUsuarios()const
     
     
 //FUNÇÃO INFO DA CLASSE PRINCIPAL
-string Linux::info_Principal()const
+void Linux::info_Principal()const
 {
     cout<<"-------------Saida do Info da classe principal que recebe o info das outras duas classes-----------\n";
     
     cout<<"Saida do array da classe Distribuicao Linux\n";
-    DistribuicoesLinux * distribuicoes = new DistribuicoesLinux();
-        
-    distribuicoes->info_Tabela_De_Distribuicoes();
-        
+    const static int SIZEDIST=4;
+    string nomesDistri[SIZEDIST] = {"Linux","Ubuntu","Fedrora","Debian"};
+    DistribuicoesLinux  Distribuicao_Linux(nomesDistri,SIZEDIST);
+    
+    Distribuicao_Linux.exibeArrayDistribuicoes();
+    
     cout<<"\n";
     //delete obj1;
     
     cout<<"Saida do array da classe Repositorio Linux\n";    
-    Repositorio * programas = new Repositorio();
-        
-    programas->info_Respositorio();
+    const static int SIZEREPOSITORIO=3;
+    string repositorios_Linux[SIZEREPOSITORIO] = {"LibreOffice","VLC","Gimp"};
+    Repositorio programas_Do_Repositorio(repositorios_Linux,SIZEREPOSITORIO);
+    
+    programas_Do_Repositorio.info_Respositorio();
     
     cout<<"-------------Fim do Info da classe principal-----------\n";
     //delete obj2;
@@ -348,9 +346,9 @@ string Linux::info_Principal()const
     
 //Metodo ponteiro
     
-void Linux::caracteristicaFuncionario(const string *ptr1 ,string *ptr2)const
+void Linux::caracteristicaSistema(const string *ptr1 ,string *ptr2)const
 {
-    ptr2 -> append(nomeDoUsuario); 
+    ptr2 -> append(nomeDoSistema); 
     ptr2 -> append(" e ");
     ptr2 -> append(*ptr1);
 }
@@ -359,7 +357,7 @@ void Linux::caracteristicaFuncionario(const string *ptr1 ,string *ptr2)const
 //Funçao para ponteiro private
 int Linux::recebePtr_Id()
 {
-    ptrBuil=&id;
+    this->ptrBuil=&id;
     return *ptrBuil;
 }
      
@@ -373,54 +371,13 @@ int Linux::recebePtr_Id()
 //codigo adiciona usaurio
 
 
-void Linux::adicionaUsurio(const string &nomeDoUsuario)
-{
-    string *aux = new string[quantUsuarios];
-       
-    if( nomesUsuarios != 0 )
-    {
-        for(int i=0;i<quantUsuarios;i++)
-            aux[i]=nomesUsuarios[i];
-           
-        delete [] nomesUsuarios;
-           
-        nomesUsuarios = new string [++quantUsuarios];
-           
-        for(int i = 0; i<quantUsuarios-1; i++)
-        
-            nomesUsuarios[ i ] = aux[i];
-            nomesUsuarios[quantUsuarios - 1] = nomeDoUsuario;
-            
-        delete [] aux;
-    }
-       
-}
 
-    
-void Linux::alocar(int quntUsers)
-{
-    if( nomesUsuarios == 0 ){
-        if( quntUsers > 0 )
-        {
-            nomesUsuarios = new string [ quntUsers ];
-            quantUsuarios = quntUsers;
-        }
-            
-            for(int i = 0; i < quantUsuarios; i++)
-                nomesUsuarios[ i ] = "";
-    } 
-}
-    
-void Linux::desalocar( )
-{
-    if( nomesUsuarios != 0 )
-        delete [ ] nomesUsuarios;
-}
 
 
 
 Linux::~Linux()
 {
+    delete Distribuicao_Linux;
     //if( nomesUsuarios != 0 )
         //delete [ ] nomesUsuarios;
 }
