@@ -1,10 +1,11 @@
-#include<locale.h>
+#include<locale>
 #include <stdio.h>
 #include "Linux.h"
 #include "DistribuicoesLinux.h"
 #include "Repositorio.h"
 #include <iostream>
-//#include"Linux.h"
+#include <string>
+using std::string;
 using std::cout;
 using std::getline;
 using namespace std;
@@ -20,9 +21,9 @@ setlocale(LC_ALL,"portuguese");
     cout<<"----------------Funcao 1: Boot do sistema--------------------\n"; 
     Linux *estado_Do_Sistema=new Linux(1);
     
-    estado_Do_Sistema->setLigado(1);
+    estado_Do_Sistema->setEstado_Do_Sistema(1);
     
-    estado_Do_Sistema->getLigado();
+    estado_Do_Sistema->getEstado_Do_Sistema();
     
     delete estado_Do_Sistema;
     
@@ -31,30 +32,25 @@ setlocale(LC_ALL,"portuguese");
     
     //FUNCAO 2
     cout<<"----------------Funcao 2 --------------------\n"; 
-    int contador=0;
-    Linux tempo_De_Atividade;
-    tempo_De_Atividade.tempoDeAtividade(120);
-    string nome;
-    cout<<"Inciciando o relogio\n"<<tempo_De_Atividade.getTempo()<<endl;
+    int comandoDoAdministrador;
+    cout<<"\nDeseja ver os dados do sistema?\n 1 - sim\t 2-nao"<<endl;
+    cin>>comandoDoAdministrador;
+    Linux EscolhaAdministrador;
+    EscolhaAdministrador.setEscolhaAdministrador(comandoDoAdministrador);
+    EscolhaAdministrador.getEscolhaAdministrador();
     
-    cout<<"\nEscolha o tempo de atividade da maquina em minutos\n"<<endl;
-    cin>>contador;
-    tempo_De_Atividade.setTempo(contador);
-    
-    cout<<endl;
-    tempo_De_Atividade.tempoDeAtividade(contador);
-    cout<<"\n";
     //FIM DA FUNCAO 2
     
-	cout<<"----------------Construtor Informacoes do usuario--------------------\n"; 
-    //objeto do construtor;
-    Linux informacoes_Usuario("Joao",32);
+	cout<<"----------------Construtor Informacoes do sistema--------------------\n"; 
+    //objeto do construtor
     
-    cout<<"\nSaida do Contsrutor\n"<<endl;
+    Linux informacoes_Do_Sistema("Ubuntu",64);
     
-    cout<<"Nome do Usuario: "<<informacoes_Usuario.getNomeDoUsuario()<<endl;
+    cout<<"\nInformacoes do sistema\n"<<endl;
     
-    cout<<"Arquitetura do sistema: "<<informacoes_Usuario.getAquiteturaDoSistema()<<" bits"<<endl;
+    cout<<"Nome do sistema: "<<informacoes_Do_Sistema.getNomeDoSistema()<<endl;
+    
+    cout<<"Arquitetura do sistema: "<<informacoes_Do_Sistema.getAquiteturaDoSistema()<<" bits"<<endl;
     
     cout<<"\n";
     //cout<<"O tipo de usuario e: "<<info.mostra_Tipos_Usuarios()<<endl;
@@ -62,23 +58,10 @@ setlocale(LC_ALL,"portuguese");
     
     cout<<"----------------Construtor Sobrecarregado 1--------------------\n"; 
     //OBJETO DO CONST SOBRRECARREGADO 1
-    Linux pc1("Ubuntu");
-    Linux pc2;
-    
-    cout<<"\nSaida do construtor 1 sobrecarregado\n "<<endl;
-    
-    cout<<"Esta distribuicao e:"<<pc1.getDistribuicao()<<endl;
-    
-    cout<<"Esta distribuicao e:"<<pc2.getDistribuicao()<<endl;
-    
-    cout<<"\n";
-    
-    cout<<"----------------Construtor Sobrecarregado 2--------------------\n"; 
-    //OBJETO DO CONST SOBRRECARREGADO 2
     Linux build1;
     Linux build2(14.09);
     
-    cout<<"\nSaida do construtor 2 sobrecarregado \n"<<endl;
+    cout<<"\nInformacoes sobre a Build\n"<<endl;
     
     cout<<"Numero da Build 01 e: "<<build1.getBuild()<<endl;
     
@@ -86,34 +69,49 @@ setlocale(LC_ALL,"portuguese");
     
     cout<<"\n";
     
+    cout<<"----------------Construtor Sobrecarregado 2--------------------\n"; 
+    //OBJETO DO CONST SOBRRECARREGADO 2
+    Linux data_De_Criaccao_Build1;
+    Linux data_De_Criaccao_Build2 ("copyright (C) 2018");
+    
+    cout<<"\nData de Criacao da Build\n "<<endl;
+    
+    cout<<"Data de Criacao:"<<data_De_Criaccao_Build1.getData_Da_Criacao()<<endl;
+    
+    cout<<"Data de Criacao:"<<data_De_Criaccao_Build2.getData_Da_Criacao()<<endl;
+    
+    cout<<"\n";
+    
     cout<<"----------------Funcao Sobrecarregada 1--------------------\n"; 
     //SAIDA DDA FUNCAO SOBRRECARREGADA 1
-    Linux usuario1;
-    Linux usuario2;
+    Linux sistema1;
+    Linux sistema2;
     
-    usuario1.checaUsuario(nome="");
-    usuario2.checaUsuario(nome="Raimundo");
+    string nomeDoSistema;
+    
+    sistema1.checaSistema(nomeDoSistema="");
+    sistema2.checaSistema(nomeDoSistema=" Ubuntu");
     
     cout<<"\nSAIDA DA FUNCAO SOBRECARREGADA 1\n"<<endl;
     
-    cout<<"Nome do Usuario 01 verificado e: "<<usuario1.getNome()<<endl;
+    cout<<"Nome do sistema 01 verificado e: "<<sistema1.getNomeDoSistema()<<endl;
     
-    cout<<"Nome do Usuario 02 verificado e: "<<usuario2.getNome()<<endl;
+    cout<<"Nome do sistema 02 verificado e: "<<sistema2.getNomeDoSistema()<<endl;
     
-    usuario1.checaUsuario(0);
-    usuario2.checaUsuario(37);
+    sistema1.checaSistema(0);
+    sistema2.checaSistema(37);
     
-    cout<<"ID do Usuario 01 verificado e: "<<usuario1.getId()<<endl;
+    cout<<"ID do sistema 01 verificado e: "<<sistema1.getId()<<endl;
     
-    cout<<"ID do Usuario 02 verificado e: "<<usuario2.getId()<<endl;
+    cout<<"ID do sistema 02 verificado e: "<<sistema2.getId()<<endl;
     
     cout<<"\n";
    
     cout<<"----------------Construtor de copia--------------------\n"; 
     //SAIDA DO CONSTRUTOR DE CÓPIA(COPIADO DO CONSTRUTOR INFO)
     cout<<"\nSAIDA DO CONSTRUTOR DE COPIA(COPIADO DO CONSTRUTOR INFO)\n"<<endl;
-    Linux copia_Informacoes(informacoes_Usuario);
-    cout<<"Copia do nome e: "<<copia_Informacoes.getNomeDoUsuario()<<endl;
+    Linux copia_Informacoes(informacoes_Do_Sistema);
+    cout<<"Copia do nome distribuicao e: "<<copia_Informacoes.getNomeDoSistema()<<endl;
     
     cout<<"Copia da arquitetura do sistema e: "<<copia_Informacoes.getAquiteturaDoSistema()<<endl;
     
@@ -125,10 +123,10 @@ setlocale(LC_ALL,"portuguese");
     //CONST E STATIC
     Linux propriedade_Linux;
     cout<<"\nSaida do construtor com atributos static e const\n"<<endl;
-    cout<<"Vesao atual do kernel linux e: "<<propriedade_Linux.getnumeroDoKernel()<<'\n';
-    cout<<"Para checar o ip diggite: "<<propriedade_Linux.getChecaIP()<<'\n';
+    cout<<"Vesao atual do kernel linux e: "<<propriedade_Linux.getversaoAtualDoDoKernelLinnux()<<'\n';
+    cout<<"Para checar o ip digite: "<<propriedade_Linux.getChecaIP()<<'\n';
     cout<<"Data da criacao do Linux: "<<propriedade_Linux.getdataDeCriacaoDoSistema()<<'\n';
-    Linux::showNumeroDeUsuarios();
+    Linux::showNumeroDeVersoesDoKernel();
    cout<<"\n";
     //FIM CONST E STATIC
     
@@ -136,13 +134,13 @@ setlocale(LC_ALL,"portuguese");
     //SAÍDA DA CÓPIA DO CONSTRUTOR CONST E STATIC
     Linux copia_De_Propriedade=propriedade_Linux;
     cout<<"\nSaida da copia do construtor com atributos static e const\n"<<endl;
-    cout<<"COPIA DE Vesao atual do kernel linux e: "<<copia_De_Propriedade.getnumeroDoKernel()<<'\n';
+    cout<<"COPIA DE Vesao atual do kernel linux e: "<<copia_De_Propriedade.getversaoAtualDoDoKernelLinnux()<<'\n';
     cout<<"\n";
-    cout<<"COPIA DE Para checar o ip diggite: "<<copia_De_Propriedade.getChecaIP()<<'\n';
+    cout<<"COPIA DE comando para checar o ip digite: "<<copia_De_Propriedade.getChecaIP()<<'\n';
     cout<<"\n";
     cout<<"COPIA DE Data da criacao do Linux: "<<copia_De_Propriedade.getdataDeCriacaoDoSistema()<<'\n';
     cout<<"\n";
-    Linux::showNumeroDeUsuarios();
+    Linux::showNumeroDeVersoesDoKernel();
     
     cout<<"----------------Imprimindo array static--------------------\n"; 
     //IMPRIMINDO ARRAY STATIC
@@ -152,64 +150,67 @@ setlocale(LC_ALL,"portuguese");
     
     //Saida do metodo info da classe principal
     cout<<"\n";
-    Linux *recebe_Classes_De_Composicao = new Linux();
-    recebe_Classes_De_Composicao->info_Principal();
+    Linux recebe_Classes_De_Composicao;
+    //recebe_Classes_De_Composicao=Distribuicao_Linux(nomesDistri,SIZEDIST);
+    recebe_Classes_De_Composicao.info_Principal();
     cout<<"\n";
     
-    //SAIDA DAS CLASSES DE COMPOSIÇÃO
-    //Linux adf;
-    //cout<<"Usuarios: "<<'\n';
-    //cout<<adf.mostraUsuarios()<<'\n';
-    //Linux *LC;
-    //cout<<LC->infor();
     
     //EXIBE ARRAY DA CLASSE DISTRIBUIÇÕES
     cout<<"----------------Exibindo array da classe Distribuicao Linux--------------------\n";
-    DistribuicoesLinux * Distribuicao_Linux = new DistribuicoesLinux();
-    Distribuicao_Linux->info_Tabela_De_Distribuicoes();
-    cout<<"\n";
+    const static int SIZEDIST=4;
+    static string nomesDistri[SIZEDIST] = {"Linux","Ubuntu","Fedrora","Debian"};
+    DistribuicoesLinux  Distribuicao_Linux(nomesDistri,SIZEDIST);
+    
+    Distribuicao_Linux.infoDistribuicoes();
+    
+    
     //FIM DISTRIBUIÇÕES
     
     //EXIBE CÓPIA ARRAY DA CLASSE DISTRIBUIÇÕES
     cout<<"----------------Exibindo copia do array da classe Distribuicao Linux--------------------\n"; 
-    DistribuicoesLinux *CopiaDistribuicao = new DistribuicoesLinux();
+    DistribuicoesLinux CopiaDistribuicao;
     CopiaDistribuicao=Distribuicao_Linux;
-    CopiaDistribuicao->info_Tabela_De_Distribuicoes();
+    CopiaDistribuicao.infoDistribuicoes();
     cout<<"\n";
     
     //EXIBE ARRAY DA CLASSE REPOSITORIO
     cout<<"----------------Exibindo array da classe Repositorio--------------------\n"; 
-    Repositorio * programas = new Repositorio();
-    programas->info_Respositorio();
+    const static int SIZEREPOSITORIO=3;
+    static string repositorios_Linux[SIZEREPOSITORIO] = {"LibreOffice","VLC","Gimp"};
+    Repositorio programas_Do_Repositorio(repositorios_Linux,SIZEREPOSITORIO);
+    
+    programas_Do_Repositorio.info_Respositorio();
     cout<<"\n";
     //Fim EXIBE ARRAY REPOSITORIO
+    
     //EXIBE CÓPIA DO ARRAY DA CLASSE REPOSITÓRIO
     cout<<"----------------Exibindo copia do array da classe Repositorio Linux--------------------\n"; 
-    Repositorio * copia_Programas = new Repositorio();
-    
-    copia_Programas=programas;
-    
-    copia_Programas->info_Respositorio();
+    Repositorio copia_Programas;
+    copia_Programas=programas_Do_Repositorio;
+    copia_Programas.info_Respositorio();
     cout<<"\n";
     
     //Fim EXIBE CÓPIA ARRAY REPOSITORIO
     
     cout<<"----------------Ponteiro da classe--------------------\n"; 
     //PONTEIRO DA CLASSE
-    Linux *ptrLinux = &informacoes_Usuario;//ponteiro aponta para o endereço do objeto info que esta localizado no contrutor info(nome do usuario)
+    Linux *ptrLinux = new Linux();//ponteiro aponta para o endereço do objeto info que esta localizado no contrutor info(nome do usuario)
+    ptrLinux = &informacoes_Do_Sistema;
     cout<<"Apontador da classe: \n";
-    
-    cout<<"Apontador para o nome do Usuario retorna: "<<ptrLinux->getNomeDoUsuario()<<'\n';
+    cout<<"Apontador para o nome do sistema retorna: "<<ptrLinux->getNomeDoSistema()<<'\n';
     cout<<"\n";
     //delete ptrLinux;
     
     cout<<"----------------Funcao com Ponteiro--------------------\n"; 
     //retorno da função ponteiro
-    Linux funcionario1;
+    Linux Sistema02;
+    
     const int tam=2;
-    const string msg[tam]={"bom funcionario","mal funcionario"};
+    const string msg[tam]={"um nucleo para sistemas UNIX","nao e um nucleo para sistemas UNIX"};
     string recado="E verdade que\t";
-    funcionario1.caracteristicaFuncionario(&msg[0],&recado);
+    
+    Sistema02.caracteristicaSistema(&msg[0],&recado);
     
     cout<<"\n";
     cout<<"Retorno da funcao com apontadores: \n";
@@ -226,6 +227,15 @@ setlocale(LC_ALL,"portuguese");
     delete recebe_Ponteiro_Private;
     cout<<recado<<'\n';
     cout<<"\n";
+    
+   
+    cout<<"----------------Saida do metodo que aumenta o vetor dinamicamente--------------------\n"; 
+    int size=4;
+    string nan[size]={"joao","maria"};
+    DistribuicoesLinux obj(nan,size);
+    
+    //obj.adicionaUsurio(nan="joaso");
+    obj.exibe();
     
     
     
