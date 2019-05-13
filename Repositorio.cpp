@@ -1,33 +1,50 @@
 #include "Repositorio.h"
-#include <string.h>
+#include <string>
 #include <iostream>
 using std::string;
 
 Repositorio::Repositorio()
 {
-    string repositorio[SIZEREPOSITORIO]={"LibreOffice","VLC","Gimp"}; 
+    nomesProgramas=0;
+    sizenomesProgramas=0;
 }
 
-Repositorio::Repositorio(string repositorio[SIZEREPOSITORIO])
+Repositorio::Repositorio(const string repositorios_Linux[], int SIZEREPOSITORIO)
 {
+    nomesProgramas=0;
+    sizenomesProgramas=0;
+    setRepositoriosLinux(repositorios_Linux,SIZEREPOSITORIO);
 }
 
 
 Repositorio::Repositorio(const Repositorio &p)
 {
     int i=0;
-    this->repositorio[i]=p.repositorio[i];
+    this->nomesProgramas[i]=p.nomesProgramas[i];
 }
 
 
 //----------------------------------FIM CONSTRUTORES----------------------------------------  
-string Repositorio::repositorio[SIZEREPOSITORIO]={"LibreOffice","VLC","Gimp"}; 
-    
-    string Repositorio::info_Respositorio()const
+void Repositorio::setRepositoriosLinux(const string repositorios_Linux[], int SIZEREPOSITORIO)
 {
-    for(int i=0;i<SIZEREPOSITORIO;i++)
+    if(nomesProgramas!=0)
+    {
+        delete [] nomesProgramas;
+        nomesProgramas=0;
+    }
+    
+    sizenomesProgramas= SIZEREPOSITORIO;
+    nomesProgramas = new string[sizenomesProgramas];
+    for(int i=0;i<sizenomesProgramas;i++)
+        nomesProgramas[i]=repositorios_Linux[i];
+}
+
+    void Repositorio::info_Respositorio()const
+{
+    cout<<"Programas Linux: \n";
+    for(int i=0;i<sizenomesProgramas;i++)
         {
-            cout<<"Programas Linux: "<<repositorio[i]<<"\n";
+            cout<<nomesProgramas[i]<<"\n";
         }
 }
 

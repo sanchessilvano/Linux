@@ -1,7 +1,7 @@
 #ifndef DISTRIBUICOESLINUX_H
 #define DISTRIBUICOESLINUX_H
 #include<iostream>
-#include<string.h>
+#include<string>
 using namespace std;
 using std::string;
 using std::getline;
@@ -16,17 +16,29 @@ public:
     DistribuicoesLinux();
     ~DistribuicoesLinux();
     
-    DistribuicoesLinux(string &distribuicoes[SIZEDISTRIBUICOES], int data_Lancamento_Distribuicao[SIZEDISTRIBUICOES] );
+    DistribuicoesLinux(const string [], int );//TIRA NO CONST NA HORA DE FICAR DINAMICO
     
     DistribuicoesLinux(const DistribuicoesLinux &p);
     
     //----------------------------------FIM CONSTRUTORES----------------------------------------  
-    string info_Tabela_De_Distribuicoes()const;
+    void setDistribuicoesLinux(const string[],int);
+    
+    void infoDistribuicoes() const;
+    
+    //ALOCAÇÃO
+    void adicionaDistribuicao(const string &novaDistribuicao);
+    
+    void exibe()const;
+    
+    void alocar(int);
+    
+    void desalocar( );
     
 private:
-    const static int SIZEDISTRIBUICOES=4;
-    static string distribuicoes[SIZEDISTRIBUICOES];
-    static int data_Lancamento_Distribuicao[SIZEDISTRIBUICOES];
+    string *nomesDistribuicoesLinux;
+    int sizenomesDistribuicoesLinux;
+    string novaDistribuicao;
+
 
 };
 

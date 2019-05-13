@@ -1,3 +1,7 @@
-Debug/Linux.cpp.o: Linux.cpp Linux.h
+Debug/Linux.cpp.o: Linux.cpp Linux.h DistribuicoesLinux.h Repositorio.h
 
 Linux.h:
+
+DistribuicoesLinux.h:
+
+Repositorio.h:
