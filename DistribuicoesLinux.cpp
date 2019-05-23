@@ -5,44 +5,176 @@ using std::string;
 
 DistribuicoesLinux::DistribuicoesLinux()
 {
-    //string distribuicoes[SIZEDISTRIBUICOES]={"Linux","Ubuntu","Fedrora","Debian"};
-     
-     //int data_Lancamento_Distribuicao[SIZEDISTRIBUICOES]={1992,1993,1994,1995};
+    nomesDistribuicoesLinux=0;
+    sizenomesDistribuicoesLinux=0;
+    string novaDistribuicao="";
 }
 
-DistribuicoesLinux::DistribuicoesLinux(string &distribuicoes[SIZEDISTRIBUICOES], int data_Lancamento_Distribuicao[SIZEDISTRIBUICOES])
+DistribuicoesLinux::DistribuicoesLinux( string nomesDistri[], int SIZEDIST )
 {
-    //*A IDEIA É INICIALIZAR OS VETORES POR AQUI, E O VET STRING POR REFERÊCENIA*/
-     //string distribuicoes[SIZEDISTRIBUICOES]={"Linux","Ubuntu","Fedrora","Debian"};
-     
-     //int data_Lancamento_Distribuicao[SIZEDISTRIBUICOES]={1992,1993,1994,1995};
+    nomesDistribuicoesLinux=0;
+    sizenomesDistribuicoesLinux=0;
+    setDistribuicoesLinux(nomesDistri,SIZEDIST);
+    string novaDistribuicao="";
 }
     
 DistribuicoesLinux::DistribuicoesLinux(const DistribuicoesLinux &p)
 {
-    int j=0;
-    this->distribuicoes[j]=p.distribuicoes[j];
+    this->sizenomesDistribuicoesLinux=p.sizenomesDistribuicoesLinux;
+    
+    nomesDistribuicoesLinux=new string[this->sizenomesDistribuicoesLinux];
+    for(int i=0;i<this->sizenomesDistribuicoesLinux;i++)
+        this->nomesDistribuicoesLinux[i]=p.nomesDistribuicoesLinux[i];
+}
+//----------------------------------FIM CONSTRUTORES----------------------------------------  
+void DistribuicoesLinux::setDistribuicoesLinux(const string nomesDistri[], int SIZEDIST)
+{
+    if(nomesDistribuicoesLinux!=0)
+    {
+        delete [] nomesDistribuicoesLinux;
+        nomesDistribuicoesLinux=0;
+    }
+    
+    sizenomesDistribuicoesLinux=SIZEDIST;
+    nomesDistribuicoesLinux = new string [sizenomesDistribuicoesLinux];
+    for(int i=0;i<sizenomesDistribuicoesLinux;i++)
+        nomesDistribuicoesLinux[i] = nomesDistri[i];
 }
 
-//----------------------------------FIM CONSTRUTORES----------------------------------------  
-string DistribuicoesLinux::distribuicoes[SIZEDISTRIBUICOES]={"Linux","Ubuntu","Fedrora","Debian"};
 
-int DistribuicoesLinux::data_Lancamento_Distribuicao[SIZEDISTRIBUICOES]={1992,1993,1994,1995};
-
-string DistribuicoesLinux::info_Tabela_De_Distribuicoes()const
+bool DistribuicoesLinux::operator==( const DistribuicoesLinux &right)const
 {
+    if( sizenomesDistribuicoesLinux != right.sizenomesDistribuicoesLinux)
+        return false;
+    for(int i=0; i< sizenomesDistribuicoesLinux; i++)
+        if( nomesDistribuicoesLinux[i] != right.nomesDistribuicoesLinux[i])
+            return false;
+    return true;
+}
 
-    for(int j=0;j<SIZEDISTRIBUICOES;j++){
-        
-        
-        
-            cout<<"distribuicoes Linux: "<<distribuicoes[j]<<"\tAno de Lancamento"<<data_Lancamento_Distribuicao[j]<<"\n";
-        
+const DistribuicoesLinux &DistribuicoesLinux::operator=(const DistribuicoesLinux &right)
+{
+    if(&right != this)
+    {
+        //
+        //
+        if( sizenomesDistribuicoesLinux != right.sizenomesDistribuicoesLinux )
+        {
+            delete [] nomesDistribuicoesLinux;
+            sizenomesDistribuicoesLinux = right.sizenomesDistribuicoesLinux;
+            nomesDistribuicoesLinux = new string[sizenomesDistribuicoesLinux];
         }
+    
+        for(int i=0; i<sizenomesDistribuicoesLinux; i++)
+            nomesDistribuicoesLinux[i] = right.nomesDistribuicoesLinux[i];
+    }
+     return *this;   
+}
+
+string &DistribuicoesLinux::operator[] (int subscript)
+{
+    if(subscript< 0 || subscript>= sizenomesDistribuicoesLinux)
+    {
+        cerr<<"\nError: subscript " <<subscript
+            <<"out of range"<<endl;
+        exit(1);
+    }
+    return nomesDistribuicoesLinux[subscript];
+}
+
+
+
+string DistribuicoesLinux::operator[] (int subscript)const
+{
+    if(subscript< 0 || subscript>= sizenomesDistribuicoesLinux)
+    {
+        cerr<<"\nError: subscript " <<subscript
+            <<"out of range"<<endl;
+        exit(1);
+    }
+    return nomesDistribuicoesLinux[subscript];
+}
+
+
+
+
+
+
+
+void DistribuicoesLinux::infoDistribuicoes() const
+{
+    cout<<"Distribuicoes: \n";
+    for(int i=0;i<sizenomesDistribuicoesLinux;i++)
+        cout<<nomesDistribuicoesLinux[i]<<"\n";
+    
+}
+
+
+//FUNÇÃO PONTEIRO DINÂMICO
+void DistribuicoesLinux::adicionaDistribuicao(string &novaDistribuicao)
+{
+    int i=0;
+    string *aux = new string[sizenomesDistribuicoesLinux];
+       
+    //if( nomesDistribuicoesLinux != 0 )
+    //{
+        for(i=0;i<sizenomesDistribuicoesLinux;i++)
+            aux[i]=nomesDistribuicoesLinux[i];
+        
+        delete [] nomesDistribuicoesLinux;
+          
+        nomesDistribuicoesLinux = new string [++sizenomesDistribuicoesLinux];
+         
+        for(int i = 0; i<sizenomesDistribuicoesLinux-1; i++)
+        {
+            nomesDistribuicoesLinux[ i ] = aux[i];
+            nomesDistribuicoesLinux[sizenomesDistribuicoesLinux - 1] = novaDistribuicao;
+        }
+        delete [] aux;
+        
+}
+
+void DistribuicoesLinux::exibe()const
+{
+    int i=0;
+    cout<<"vetor com acrescimo de elementos: \n";
+    for(i=0;i<sizenomesDistribuicoesLinux;i++)
+    {
+        cout<<nomesDistribuicoesLinux[i]<<"\n";   
+    }
+        
+}
+
+//FIM FUNÇÃO PONTEIRO DINÂMICO
+    
+
+void DistribuicoesLinux::alocar(int quantDist)
+{
+    if( nomesDistribuicoesLinux == 0 )
+    {
+        if( quantDist> 0 )
+        {
+            nomesDistribuicoesLinux= new string [ quantDist ];
+            sizenomesDistribuicoesLinux = quantDist;
+        }
+            
+            for(int i = 0; i < sizenomesDistribuicoesLinux; i++)
+                nomesDistribuicoesLinux[ i ] = "";
+    } 
+}
+  
+
+  
+void DistribuicoesLinux::desalocar( )
+{
+    if( nomesDistribuicoesLinux != 0 )
+        delete [ ] nomesDistribuicoesLinux;
 }
 
 
 DistribuicoesLinux::~DistribuicoesLinux()
 {
+    
+    
 }
 

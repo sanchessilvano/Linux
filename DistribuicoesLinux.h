@@ -1,7 +1,8 @@
 #ifndef DISTRIBUICOESLINUX_H
 #define DISTRIBUICOESLINUX_H
 #include<iostream>
-#include<string.h>
+#include<stdlib.h>
+#include<string>
 using namespace std;
 using std::string;
 using std::getline;
@@ -11,22 +12,50 @@ using std::endl;
 
 class DistribuicoesLinux
 {
+    friend ostream &operator<<( ostream &, const DistribuicoesLinux &);
 
 public:
     DistribuicoesLinux();
     ~DistribuicoesLinux();
     
-    DistribuicoesLinux(string &distribuicoes[SIZEDISTRIBUICOES], int data_Lancamento_Distribuicao[SIZEDISTRIBUICOES] );
+    DistribuicoesLinux(string [], int );//TIRA NO CONST NA HORA DE FICAR DINAMICO
     
     DistribuicoesLinux(const DistribuicoesLinux &p);
     
     //----------------------------------FIM CONSTRUTORES----------------------------------------  
-    string info_Tabela_De_Distribuicoes()const;
+    int getSize()const;
+    
+    const DistribuicoesLinux &operator=(const DistribuicoesLinux &);
+    bool operator==( const DistribuicoesLinux & )const;
+    
+    bool operator!=( const DistribuicoesLinux &right )const
+    {
+        return! (*this==right);
+    }
+    
+    string &operator[] (int);
+    
+    string operator[] (int)const;
+    
+    
+    void setDistribuicoesLinux(const string[],int);
+    
+    void infoDistribuicoes() const;
+    
+    //ALOCAÇÃO
+    void adicionaDistribuicao(string &novaDistribuicao);
+    
+    void exibe()const;
+    
+    void alocar(int);
+    
+    void desalocar( );
     
 private:
-    const static int SIZEDISTRIBUICOES=4;
-    static string distribuicoes[SIZEDISTRIBUICOES];
-    static int data_Lancamento_Distribuicao[SIZEDISTRIBUICOES];
+    string *nomesDistribuicoesLinux;
+    int sizenomesDistribuicoesLinux;
+    string novaDistribuicao;
+
 
 };
 

@@ -1,7 +1,8 @@
 #ifndef REPOSITORIO_H
 #define REPOSITORIO_H
 #include<iostream>
-#include<string.h>
+#include<stdlib.h>
+#include<string>
 using namespace std;
 using std::string;
 using std::getline;
@@ -11,21 +12,39 @@ using std::endl;
 
 class Repositorio
 {
+    friend ostream &operator<<( ostream &, const Repositorio &);
 
 public:
     Repositorio();
     ~Repositorio();
     
-    Repositorio(string repositorio[]);
+    Repositorio(string [],int);
     
     Repositorio(const Repositorio &p);
+    
     //----------------------------------FIM CONSTRUTORES----------------------------------------  
-    string info_Respositorio()const;
+    int getSize()const;
+    
+    const Repositorio &operator=(const Repositorio &);
+    bool operator==( const Repositorio & )const;
+    
+    bool operator!=( const Repositorio &right )const
+    {
+        return! (*this==right);
+    }
+    
+    string &operator[] (int);
+    
+    string operator[] (int)const;
+    
+    void setRepositoriosLinux( string[],int);
+    
+    void info_Respositorio() const;
 
 
 private: 
-const static int SIZEREPOSITORIO=3;
-static string repositorio[SIZEREPOSITORIO]; 
+string *nomesProgramas;
+int sizenomesProgramas;
 };
 
 #endif // REPOSITORIO_H
