@@ -261,5 +261,10 @@ setlocale(LC_ALL,"portuguese");
     CopiaDistribuicao.infoDistribuicoes();
     cout<<"\n";
     
+    cout<<"----------------Exibindo sobrecarga do operador  <<  --------------------\n";
+    DistribuicoesLinux dist;
+    dist=Distribuicao_Linux;
+    cout<<dist<<endl;
+    
 return 0;
 }//end main

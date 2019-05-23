@@ -27,6 +27,8 @@ DistribuicoesLinux::DistribuicoesLinux(const DistribuicoesLinux &p)
         this->nomesDistribuicoesLinux[i]=p.nomesDistribuicoesLinux[i];
 }
 //----------------------------------FIM CONSTRUTORES----------------------------------------  
+
+
 void DistribuicoesLinux::setDistribuicoesLinux(const string nomesDistri[], int SIZEDIST)
 {
     if(nomesDistribuicoesLinux!=0)
@@ -143,6 +145,15 @@ void DistribuicoesLinux::exibe()const
         cout<<nomesDistribuicoesLinux[i]<<"\n";   
     }
         
+}
+
+ostream &operator<<( ostream &output, const DistribuicoesLinux &p)
+{
+    cout<<"Estado da copia apos insercoes VIA SOBRECARGA DO OPERADOR <<"<<endl;
+    for(int i=0;i<p.sizenomesDistribuicoesLinux;i++)
+    output<<p.nomesDistribuicoesLinux[i]<<endl;
+    
+    return output;
 }
 
 //FIM FUNÇÃO PONTEIRO DINÂMICO
