@@ -261,10 +261,20 @@ setlocale(LC_ALL,"portuguese");
     CopiaDistribuicao.infoDistribuicoes();
     cout<<"\n";
     
+    
+    
     cout<<"----------------Exibindo sobrecarga do operador  <<  --------------------\n";
     DistribuicoesLinux dist;
     dist=Distribuicao_Linux;
     cout<<dist<<endl;
+    cout<<"\n";
     
+    cout<<"----------------Exibindo sobrecarga do operador  !=  --------------------\n";
+    if (Distribuicao_Linux!=Distribuicao_Linux2)
+    {
+        cout<<"Novos elementos inseridos, os vetores sao diferenntes\n";
+    }else{
+        cout<<"Nenhuma nova insercao , os vetores sao iguais\n";
+    }
 return 0;
 }//end main
