@@ -45,6 +45,6 @@ public:
 private: 
 string *nomesProgramas;
 int sizenomesProgramas;
-};
+};//aaa
 
 #endif // REPOSITORIO_H
