@@ -13,6 +13,7 @@ using std::endl;
 
 class Linux
 {
+    friend ostream &operator<<( ostream &, const Linux &); 
 
 //----------------------------------CONSTRUTORES----------------------------------------    
 public:
@@ -34,6 +35,9 @@ public:
     //CÓPIA DE CONSTRUTOR:
     Linux(const Linux&);
     //fim do const ccópia
+    
+    Linux(double [], int );//CONSTRUTOR PARA O VETOR VERSOES
+    
     
     //CONSTRUTOR COM CONST E STATIC
     Linux(int numeroDeVersoesDoKernel,double versaoAtualDoDoKernelLinnux,string &dataDeCriacaoDoSistema,string checaIP);
@@ -105,6 +109,8 @@ public:
    
     string getdataDeCriacaoDoSistema()const;
     //FIM FUNÇÕES CONSTRUTOR COM CONST E STATIC
+    
+    void setVersoesKernel(const double versoesLinux[], int SIZEVERSOES);
    
    //FUNÇÃO MOSTRA ARRAY COM VERSÕES DO KERNEL LINUX
     double Mostra_versoes_Do_Linux() const;
@@ -122,12 +128,27 @@ public:
     //função ponteiro private
     int recebePtr_Id();
     
+    //SOBRECARGA DE OPERADORES
+    bool operator==(const Linux &)const;
+    
+    const Linux &operator=(const Linux &);
+    
+    bool operator!=(const Linux &)const;
+    
+    double &operator[] (int);
+    
+    bool operator<(const Linux &right);
+    
+    bool operator&&(const Linux &right)const;
+    //FIM SOBRECARGA DE OPERADORES
     
 private:
     const string COMANDOCHECAIP="ifconfig";
     const static string DATADECRIACAODOSISTEMA;
-    const static int SIZEVERSOES=14;
-    static double versoesLinux[SIZEVERSOES];
+    //const static int SIZEVERSOES=14;
+    //static double versoesLinux[SIZEVERSOES] = {1.0,1.2,2.0,2.2,2.4,2.6,3.0,3.1,3.2,4.1,4.2,5.0,5.1,5.2};
+    double *versoes;
+    int sizeVersoes;
     static int numeroDeVersoesDoKernel;
     static double versaoAtualDoDoKernelLinnux;
     int id=37;

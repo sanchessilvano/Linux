@@ -1,6 +1,7 @@
 #include "Linux.h"
 #include <string.h>
 #include <iostream>
+#include<stdlib.h>
 using std::string;
 
 //----------------------------------CONSTRUTORES----------------------------------------  
@@ -12,10 +13,10 @@ Linux::Linux()
     
     this->setBuild(0);
     
-    
-    
-    
     ptrID=0;
+    
+    versoes=0;
+    sizeVersoes=0;
     
 }
 
@@ -60,6 +61,15 @@ Linux::Linux(const double &build)
     
 }
 //FIM CONSTRUTOR SOBRECARREGADO 2
+
+Linux::Linux( double versoesLinux[], int SIZEVERSOES)
+{
+    versoes=0;
+    sizeVersoes=0;
+    setVersoesKernel(versoesLinux,SIZEVERSOES);
+}
+
+
     
 
 //CÓPIA DE CONSTRUTOR:
@@ -77,7 +87,16 @@ Linux::Linux(const Linux &p)
     Distribuicao_Linux= 0;
     
     programas_Do_Repositorio=0;
+    
+    
+    //PARA O VERTOR DE VERSOES DO KERNEL
+    /*this->sizeVersoes=p.sizeVersoes;
+    
+    versoes=new double[this->sizeVersoes];
+    for(int i=0;i<this->sizeVersoes;i++)
+        this->versoes[i]=p.versoes[i];*/
 }
+
     
     
 //CONSTRUTOR COM CONST E STATIC
@@ -137,7 +156,7 @@ bool Linux::getEstado_Do_Sistema()const
         
     }else if(ligado==0){
         cout<<"\nSistema Operaccionnal nao Inicializado, falha no boot\n"<<endl;
-        //exit(0);
+        exit(0);
         //return 0;
     }
 }
@@ -163,7 +182,7 @@ int Linux::getEscolhaAdministrador()const
         
     }else if (comandoDoAdministrador!=1){
         cout<<"\nEncerrando sessao\n";
-      //exit(0);
+      exit(0);
     }
 }
 
@@ -290,14 +309,27 @@ string Linux::getdataDeCriacaoDoSistema()const
 
 //FUNÇÃO MOSTRA ARRAY COM VERSÕES DO KERNEL LINUX
     
-double Linux::versoesLinux[SIZEVERSOES]={1.0,1.2,2.0,2.2,2.4,2.6,3.0,3.1,3.2,4.1,4.2,5.0,5.1,5.2};
-
+//double Linux::versoesLinux[SIZEVERSOES]={1.0,1.2,2.0,2.2,2.4,2.6,3.0,3.1,3.2,4.1,4.2,5.0,5.1,5.2};
+void Linux::setVersoesKernel(const double versoesLinux[], int SIZEVERSOES)
+{
+    if(versoes!=0)
+    {
+        delete [] versoes;
+        versoes=0;
+    }
+    
+    sizeVersoes=SIZEVERSOES;
+    versoes = new double [sizeVersoes];
+    for(int i=0;i<sizeVersoes;i++)
+        versoes[i] = versoesLinux[i];
+}
 double Linux::Mostra_versoes_Do_Linux()const    
 {
-    for(int i=0;i<SIZEVERSOES;i++)
+    cout<<"Versoes do kernel Linux: \n";
+    for(int i=0;i<sizeVersoes;i++)
     {
             
-        cout<<"versao: "<<versoesLinux[i]<<'\n';
+        cout<<"versao: "<<versoes[i]<<'\n';
         
     }
        
@@ -309,8 +341,12 @@ void Linux::info_Principal()const
 {
     cout<<"-------------Saida do Info da classe principal que recebe o info das outras duas classes-----------\n";
     cout<<"Saida do array da classe Principal Linux\n";
-    Linux versoesDoKernel;
-    versoesDoKernel.Mostra_versoes_Do_Linux();
+    /*Linux versoesDoKernel;
+    versoesDoKernel.Mostra_versoes_Do_Linux();*/
+    const static int SIZEVERSOES=14;
+    static double versoesLinux[SIZEVERSOES] = {1.0,1.2,2.0,2.2,2.4,2.6,3.0,3.1,3.2,4.1,4.2,5.0,5.1,5.2};
+    Linux tabela_De_Versoes_Linux (versoesLinux,SIZEVERSOES);
+    tabela_De_Versoes_Linux.Mostra_versoes_Do_Linux();
     cout<<"\n";
     
     
@@ -352,15 +388,88 @@ int Linux::recebePtr_Id()
     this->ptrID=&id;
     return *ptrID;
 }
-     
 
+
+//SOBRECARGA DE OPERADORES
+ostream &operator<<( ostream &output, const Linux &numero) 
+{
+    output<<numero.build;
+    return output;
+}
+
+
+const Linux &Linux::operator=(const Linux &right)
+{
+    if(&right != this)
+    {
+        //
+        //
+        if( sizeVersoes != right.sizeVersoes )
+        {
+            delete [] versoes;
+            sizeVersoes = right.sizeVersoes;
+            versoes = new double[sizeVersoes];
+        }
+    
+        for(int i=0; i<sizeVersoes; i++)
+            versoes[i] = right.versoes[i];
+    }
+     return *this;   
+}
+
+
+bool Linux::operator==(const Linux &right)const
+{
+    if(build!=right.build){
+        return false;
+    }else{
+        return true;
+    }
+        
+}
+
+bool Linux::operator!=(const Linux &right)const
+ {
+    return! (*this==right);
+ }
+
+
+double &Linux::operator[] (int subscript)
+{
+    if(subscript< 0 || subscript>= sizeVersoes)
+    {
+        cerr<<"\nError: subscript " <<subscript
+            <<"out of range"<<endl;
+        exit(1);
+    }
+    return versoes[subscript];
+}
+
+
+bool Linux::operator<(const Linux &right)
+{
+    
+    return build<right.build;
+}
+
+
+bool Linux::operator&&(const Linux &right)const
+{
+    if(nomeDoSistema==right.nomeDoSistema && aquiteturaDoSistema==right.aquiteturaDoSistema){
+        return true;
+    }else{
+        return false;
+    }
+        
+}      
+//FIM SOBRECARGA DE OPERADORES
 Linux::~Linux()
 {
     
     
     
     
-    delete [] versoesLinux;
+    //delete [] versoesLinux;
     
     
     

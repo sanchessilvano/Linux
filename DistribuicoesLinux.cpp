@@ -54,6 +54,7 @@ bool DistribuicoesLinux::operator==( const DistribuicoesLinux &right)const
     return true;
 }
 
+
 const DistribuicoesLinux &DistribuicoesLinux::operator=(const DistribuicoesLinux &right)
 {
     if(&right != this)
@@ -98,7 +99,11 @@ string DistribuicoesLinux::operator[] (int subscript)const
 }
 
 
-
+bool DistribuicoesLinux::operator<(const DistribuicoesLinux &right)
+{
+    int i;
+    return nomesDistribuicoesLinux[i]<right.nomesDistribuicoesLinux[i];
+} 
 
 
 
@@ -149,7 +154,7 @@ void DistribuicoesLinux::exibe()const
 
 ostream &operator<<( ostream &output, const DistribuicoesLinux &p)
 {
-    cout<<"Estado da copia apos insercoes VIA SOBRECARGA DO OPERADOR <<"<<endl;
+    cout<<"Estado da copia do vetor de idstribuicoes Linux apos insercoes VIA SOBRECARGA DO OPERADOR <<"<<endl;
     for(int i=0;i<p.sizenomesDistribuicoesLinux;i++)
     output<<p.nomesDistribuicoesLinux[i]<<endl;
     

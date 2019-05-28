@@ -37,6 +37,8 @@ public:
     
     string operator[] (int)const;
     
+    bool operator<(const DistribuicoesLinux &right);
+    
     
     void setDistribuicoesLinux(const string[],int);
     

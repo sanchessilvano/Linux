@@ -107,6 +107,16 @@ string Repositorio::operator[] (int subscript)const
         }
 }
 
+
+ostream &operator<<( ostream &output, const Repositorio &p)
+{
+    cout<<"Saida vetor Programas do repositorio VIA SOBRECARGA DO OPERADOR <<"<<endl;
+    for(int i=0;i<p.sizenomesProgramas;i++)
+    output<<p.nomesProgramas[i]<<endl;
+    
+    return output;
+}
+
 Repositorio::~Repositorio()
 {
 }

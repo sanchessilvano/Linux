@@ -116,6 +116,16 @@ setlocale(LC_ALL,"portuguese");
     cout<<"Copia da arquitetura do sistema e: "<<copia_Informacoes.getAquiteturaDoSistema()<<endl;
     
     cout<<"\n";
+    cout<<"----------------Imprimindo array static--------------------\n"; 
+    //IMPRIMINDO ARRAY STATIC
+    const static int SIZEVERSOES=14;
+    static double versoesLinux[SIZEVERSOES] = {1.0,1.2,2.0,2.2,2.4,2.6,3.0,3.1,3.2,4.1,4.2,5.0,5.1,5.2};
+    Linux tabela_De_Versoes_Linux (versoesLinux,SIZEVERSOES);
+    cout<<"Tabela de versoes do linux:"<<'\n';
+    tabela_De_Versoes_Linux.Mostra_versoes_Do_Linux();
+    
+    
+    cout<<"\n";
     
     //FIM SAIDA DO CONSTRUTOR DE CÓPIA
     
@@ -142,11 +152,13 @@ setlocale(LC_ALL,"portuguese");
     cout<<"\n";
     Linux::showNumeroDeVersoesDoKernel();
     
-    cout<<"----------------Imprimindo array static--------------------\n"; 
+    /*cout<<"----------------Imprimindo array static--------------------\n"; 
     //IMPRIMINDO ARRAY STATIC
-    Linux tabela_De_Versoes_Linux;
-    cout<<"Tabela de versoes do linux:"<<'\n';
-    cout<<tabela_De_Versoes_Linux.Mostra_versoes_Do_Linux()<<'\n';
+    const static int SIZEVERSOES=15;
+    static double versoesLinux[SIZEVERSOES] = {1.0,1.2,2.0,2.2,2.4,2.6,3.0,3.1,3.2,4.1,4.2,5.0,5.1,5.2};
+    Linux tabela_De_Versoes_Linux (versoesLinux,SIZEVERSOES);
+   // cout<<"Tabela de versoes do linux:"<<'\n';
+    //tabela_De_Versoes_Linux.Mostra_versoes_Do_Linux();*/
     
     //Saida do metodo info da classe principal
     cout<<"\n";
@@ -159,7 +171,7 @@ setlocale(LC_ALL,"portuguese");
     //EXIBE ARRAY DA CLASSE DISTRIBUIÇÕES
     cout<<"----------------Exibindo array da classe Distribuicao Linux--------------------\n";
     const static int SIZEDIST=4;
-    static string nomesDistri[SIZEDIST] = {"Linux","Ubuntu","Fedrora","Debian"};
+    static string nomesDistri[SIZEDIST] = {"Linux","Ubuntu","Fedora","Debian"};
     DistribuicoesLinux  Distribuicao_Linux(nomesDistri,SIZEDIST);
     
     Distribuicao_Linux.infoDistribuicoes();
@@ -264,17 +276,125 @@ setlocale(LC_ALL,"portuguese");
     
     
     cout<<"----------------Exibindo sobrecarga do operador  <<  --------------------\n";
-    DistribuicoesLinux dist;
-    dist=Distribuicao_Linux;
-    cout<<dist<<endl;
+     cout<<"\n";
+    
+    //Chamando vetores sem precisar chamar a função
+    
+    //SOBRECARGA DO OPERADOR DA CLASSE DISTRIBUIÇÕESLINUX
+    cout<<Distribuicao_Linux<<endl;//Operador de INSERÇÃO DE FLUXO
     cout<<"\n";
     
+    //SOBRECARGA DO OPERADOR DA CLASSE REPOSITÓRIO
+    cout<<programas_Do_Repositorio<<endl;
+    
+    //SOBRECARGA DO OPERADOR DA CLASSE LINUX
+    cout<<"build "<<build2<<endl;
+    
     cout<<"----------------Exibindo sobrecarga do operador  !=  --------------------\n";
-    if (Distribuicao_Linux!=Distribuicao_Linux2)
+    cout<<"\n";
+    
+    //SOBRECARGA DO OPERADOR DA CLASSE DISTRIBUIÇÕESLINUX
+    if (Distribuicao_Linux!=Distribuicao_Linux2)// Operador de diferença
     {
-        cout<<"Novos elementos inseridos, os vetores sao diferenntes\n";
+        cout<<"Novos elementos inseridos no vetor Distribuicao, os vetores sao diferentes\n";
     }else{
-        cout<<"Nenhuma nova insercao , os vetores sao iguais\n";
+        cout<<"Nenhuma nova insercao no vetor Distribuicao original , os vetores sao iguais\n";
     }
+    cout<<"\n";
+    
+    //SOBRECARGA DO OPERADOR DA CLASSE REPOSITÓRIO
+    if (programas_Do_Repositorio!=programas_Do_Repositorio)// Operador de diferença
+    {
+        cout<<"Novos elementos inseridos no vetor Repositorio original, os vetores sao diferentes\n";
+    }else{
+        cout<<"Nenhuma nova insercao no vetor Repositorio, os vetores sao iguais\n";
+    }
+    cout<<"\n";
+    
+    
+    
+    //SOBRECARGA DO OPERADOR DA CLASSE LINUX
+    if(build1!=build2)
+    {
+        cout<<"A Build: "<<build1<<" e diferente da Build: "<<build2<<"\n";
+    }else{
+        cout<<"A Build: "<<build1<<" NAO e diferente da Build: "<<build2<<"\n";
+    }
+    cout<<"\n";
+    
+    
+    cout<<"----------------Exibindo sobrecarga do operador  ==  --------------------\n";
+     cout<<"\n";
+     
+    //SOBRECARGA DO OPERADOR DA CLASSE DISTRIBUIÇÕESLINUX
+    if (Distribuicao_Linux==Distribuicao_Linux2)// Operador de igualdade
+    {
+        cout<<"Nenhuma nova insercao , os vetores sao iguais\n";
+       
+    }else{
+         cout<<"Novos elementos inseridos, os vetores sao diferenntes\n";
+    }
+    cout<<"\n";
+    
+    
+    //SOBRECARGA DO OPERADOR DA CLASSE REPOSITÓRIO
+    if (programas_Do_Repositorio==programas_Do_Repositorio)// Operador de igualdade
+    {
+        cout<<"Nenhuma nova insercao no vetor Repositorio, os vetores sao iguais\n";
+    }else{
+        cout<<"Novos elementos inseridos no vetor Repositorio original, os vetores sao diferentes\n";
+        
+    }
+    cout<<"\n";
+    
+    
+    
+    //SOBRECARGA DO OPERADOR DA CLASSE LINUX
+    if(build1==build2)
+    {
+        cout<<"A Build: "<<build1<<" E igual a Build: "<<build2<<"\n";
+    }else{
+        cout<<"A Build: "<<build1<<" NAO E igual a Build: "<<build2<<"\n";
+    }
+    cout<<"\n";
+    
+    
+    cout<<"----------------Exibindo sobrecarga do operador  []  --------------------\n";
+     cout<<"\n";
+    
+    //SOBRECARGA DO OPERADOR DA CLASSE DISTRIBUIÇÕESLINUX
+    cout<<endl<<"Distribuicao[0] e: "<<Distribuicao_Linux[0]<<"\n";//
+    cout<<"\n";
+    
+    //SOBRECARGA DO OPERADOR DA CLASSE REPOSITÓRIO
+    cout<<endl<<"Repositorio[0] e: "<<programas_Do_Repositorio[0]<<"\n";//
+    cout<<"\n";
+    
+    
+    //SOBRECARGA DO OPERADOR DA CLASSE LINUX
+    cout<<endl<<"versoesLinux[13] e: "<<tabela_De_Versoes_Linux[13]<<"\n";//
+    cout<<"\n";
+    
+    
+    cout<<"----------------Exibindo sobrecarga do operador  <  --------------------\n";
+    cout<<"\n";
+     
+    if(build1<build2){
+        cout<<"A Build: "<<build1<<" E menor que a Build: "<<build2<<"\n";
+    }else{
+        cout<<"A Build: "<<build1<<" NAO menor que a Build: "<<build2<<"\n";
+    }
+    cout<<"\n";
+    
+    
+    cout<<"----------------Exibindo sobrecarga do operador  &&  --------------------\n";
+    
+    if(copia_Informacoes&&informacoes_Do_Sistema)
+    {
+        cout<<"Copia e orginal sao iguais\n";
+    }else{
+        cout<<"Copia e orginal nao sao iguais\n";
+    }
+    cout<<"\n";
 return 0;
 }//end main
