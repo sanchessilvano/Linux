@@ -30,7 +30,7 @@ public:
     
     bool operator!=( const Repositorio &right )const
     {
-        return! (*this==right);
+        return! (*this==right);//incoca o operador ==
     }
     
     string &operator[] (int);

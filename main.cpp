@@ -371,7 +371,7 @@ setlocale(LC_ALL,"portuguese");
     cout<<"\n";
     
     
-    //SOBRECARGA DO OPERADOR DA CLASSE LINUX
+    //SOBRECARGA DO OPERADOR DA CLASSE LINUX SEM CONNST
     cout<<endl<<"versoesLinux[13] e: "<<tabela_De_Versoes_Linux[13]<<"\n";//
     cout<<"\n";
     
@@ -396,5 +396,27 @@ setlocale(LC_ALL,"portuguese");
         cout<<"Copia e orginal nao sao iguais\n";
     }
     cout<<"\n";
+    
+    cout<<"----------------Exibindo sobrecarga do operador  []  CONST--------------------\n";
+    //SOBRECARGA DO OPERADOR DA CLASSE DISTRIBUIÇÕESLINUX
+    const DistribuicoesLinux Distribuicoes_Const(nomesDistri,SIZEDIST);
+    
+    cout<<endl<<"Distribuicao[0] e: "<<Distribuicoes_Const[0]<<"\n";
+    cout<<endl<<"Distribuicao[0] e: "<<Distribuicoes_Const[4]<<"\n";//
+    cout<<"\n";
+    
+    //SOBRECARGA DO OPERADOR DA CLASSE REPOSITÓRIO
+    const Repositorio Repositorio_Const(repositorios_Linux,SIZEREPOSITORIO);
+    cout<<endl<<"Repositorio[0] e: "<<Repositorio_Const[0]<<"\n";//
+    cout<<endl<<"Repositorio[0] e: "<<Repositorio_Const[4]<<"\n";//
+    cout<<"\n";
+    
+    
+    //SOBRECARGA DO OPERADOR DA CLASSE LINUX COM CONST
+    const Linux Versoes_Linux_Const(versoesLinux,SIZEVERSOES);
+    
+    cout<<endl<<"versoesLinux ADD[15] e: "<<Versoes_Linux_Const[13]<<"\n";
+    
+    cout<<endl<<"versoesLinux ADD[15] e: "<<Versoes_Linux_Const[14]<<"\n";//
 return 0;
 }//end main

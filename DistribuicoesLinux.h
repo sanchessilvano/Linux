@@ -26,11 +26,12 @@ public:
     int getSize()const;
     
     const DistribuicoesLinux &operator=(const DistribuicoesLinux &);
+    
     bool operator==( const DistribuicoesLinux & )const;
     
     bool operator!=( const DistribuicoesLinux &right )const
     {
-        return! (*this==right);
+        return! (*this==right);//invoca o operador ==
     }
     
     string &operator[] (int);

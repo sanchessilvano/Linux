@@ -90,7 +90,7 @@ string Repositorio::operator[] (int subscript)const
     if(subscript< 0 || subscript>= sizenomesProgramas)
     {
         cerr<<"\nError: subscript " <<subscript
-            <<"out of range"<<endl;
+            <<"out of range const Repositorio"<<endl;
         exit(1);
     }
     return nomesProgramas[subscript];

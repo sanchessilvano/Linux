@@ -92,7 +92,7 @@ string DistribuicoesLinux::operator[] (int subscript)const
     if(subscript< 0 || subscript>= sizenomesDistribuicoesLinux)
     {
         cerr<<"\nError: subscript " <<subscript
-            <<"out of range"<<endl;
+            <<"out of range CONST DISTRIBUICOES"<<endl;
         exit(1);
     }
     return nomesDistribuicoesLinux[subscript];

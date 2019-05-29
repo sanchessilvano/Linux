@@ -430,7 +430,7 @@ bool Linux::operator==(const Linux &right)const
 
 bool Linux::operator!=(const Linux &right)const
  {
-    return! (*this==right);
+    return! (*this==right);//Invvoca o operadorr ==
  }
 
 
@@ -440,6 +440,18 @@ double &Linux::operator[] (int subscript)
     {
         cerr<<"\nError: subscript " <<subscript
             <<"out of range"<<endl;
+        exit(1);
+    }
+    return versoes[subscript];
+}
+
+
+double Linux::operator[] (int subscript)const
+{
+    if(subscript< 0 || subscript>= sizeVersoes)
+    {
+        cerr<<"\nError: subscript " <<subscript
+            <<"out of range CONST OBJECT\n"<<endl;
         exit(1);
     }
     return versoes[subscript];

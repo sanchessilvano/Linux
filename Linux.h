@@ -137,6 +137,8 @@ public:
     
     double &operator[] (int);
     
+    double operator[] (int)const;
+    
     bool operator<(const Linux &right);
     
     bool operator&&(const Linux &right)const;
