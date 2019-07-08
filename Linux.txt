@@ -1,1 +1,1 @@
-./Release/Repositorio.cpp.o ./Release/DistribuicoesLinux.cpp.o ./Release/Linux.cpp.o ./Release/main.cpp.o   
+./Release/main.cpp.o ./Release/SistemaOperacional.cpp.o ./Release/SistemaDeArquivos.cpp.o ./Release/NTFS.cpp.o ./Release/Linux_Educacional.cpp.o ./Release/Mac.cpp.o ./Release/Debian.cpp.o ./Release/EXT3.cpp.o ./Release/Programa.cpp.o ./Release/Ubuntu.cpp.o ./Release/Windows.cpp.o ./Release/Fat32.cpp.o ./Release/Linux.cpp.o   

@@ -93,12 +93,30 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
-    <File Name="Repositorio.cpp"/>
-    <File Name="Repositorio.h"/>
-    <File Name="DistribuicoesLinux.cpp"/>
-    <File Name="DistribuicoesLinux.h"/>
+    <File Name="Programa.h"/>
+    <File Name="Programa.cpp"/>
+    <File Name="EXT3.cpp"/>
+    <File Name="EXT3.h"/>
+    <File Name="NTFS.cpp"/>
+    <File Name="NTFS.h"/>
+    <File Name="Fat32.cpp"/>
+    <File Name="Fat32.h"/>
+    <File Name="SistemaDeArquivos.cpp"/>
+    <File Name="SistemaDeArquivos.h"/>
+    <File Name="Linux_Educacional.cpp"/>
+    <File Name="Linux_Educacional.h"/>
+    <File Name="Debian.cpp"/>
+    <File Name="Debian.h"/>
+    <File Name="Ubuntu.cpp"/>
+    <File Name="Ubuntu.h"/>
+    <File Name="Mac.cpp"/>
+    <File Name="Mac.h"/>
+    <File Name="Windows.cpp"/>
+    <File Name="Windows.h"/>
     <File Name="Linux.cpp"/>
     <File Name="Linux.h"/>
+    <File Name="SistemaOperacional.cpp"/>
+    <File Name="SistemaOperacional.h"/>
     <File Name="main.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>

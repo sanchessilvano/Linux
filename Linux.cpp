@@ -4,423 +4,90 @@
 #include<stdlib.h>
 using std::string;
 
-//----------------------------------CONSTRUTORES----------------------------------------  
-//Construtor padrão
-Linux::Linux()
-:Distribuicao_Linux(),programas_Do_Repositorio()
+
+Linux::Linux( char* novoNomeDoSistema,int novaAquiteturaDoSistema,int novoComandoDoAdministrador,double novaBuild,bool novoLligado,const string &novoNomePrograma,const string &KernelLinux)
+: SistemaOperacional( novoNomeDoSistema,novaAquiteturaDoSistema,novoComandoDoAdministrador,novaBuild,novoLligado,novoNomePrograma )
 {
-    this->Data_Da_Criacao="Data nao especificada";
+    this->KernelLinux=KernelLinux;
+}
+
+Linux::Linux(const Linux &copia)
+: SistemaOperacional( copia ) 
+{
     
-    this->setBuild(0);
-    
-    ptrID=0;
-    
-    versoes=0;
-    sizeVersoes=0;
-    
+    this->KernelLinux=copia.KernelLinux;
 }
 
 
-//CONSTRUTOR INFO
-Linux::Linux(const string &nomeDoSistema, int aquiteturaDoSistema)
-:Distribuicao_Linux(),programas_Do_Repositorio()
+void Linux::abrirPrograma ()
 {
-    this->nomeDoSistema=nomeDoSistema;
-        
-    if(aquiteturaDoSistema<=0)
-        this->aquiteturaDoSistema = 0;
-    else
-        this->aquiteturaDoSistema=aquiteturaDoSistema;
-        
-    
-}
-//end CONSTRUTOR info
-
-
-//CONSTRUTOR SOBRECARREGADO 1
-Linux::Linux(const string &Data_Da_Criacao)
-:Distribuicao_Linux(),programas_Do_Repositorio()
-{
-    this->Data_Da_Criacao=Data_Da_Criacao;
-    
-    
-        
+    cout<<programa<<" Versao Linux aberto!"<<endl;
 }
 
-    
-//CONSTRUTOR SOBRECARREGADO 2
-Linux::Linux(const double &build)
-:Distribuicao_Linux(),programas_Do_Repositorio()
+void Linux::abrirArquivo ()
 {
-    if(build<=0)
-        this->build=0;
-    else
-        this->build=build;
-        
-    
-    
-}
-//FIM CONSTRUTOR SOBRECARREGADO 2
-
-Linux::Linux( double versoesLinux[], int SIZEVERSOES)
-{
-    versoes=0;
-    sizeVersoes=0;
-    setVersoesKernel(versoesLinux,SIZEVERSOES);
+    cout<<"Arquivo do Gimp aberto!"<<endl;
 }
 
 
-    
-
-//CÓPIA DE CONSTRUTOR:
-Linux::Linux(const Linux &p)
-:Distribuicao_Linux(p.Distribuicao_Linux),programas_Do_Repositorio()
+void Linux::infoSistema()
 {
-    this->nomeDoSistema=p.nomeDoSistema;
-
-        
-    if(aquiteturaDoSistema<=0)
-        this->aquiteturaDoSistema = 0;
-    else
-        this->aquiteturaDoSistema=p.aquiteturaDoSistema;
-        
-    Distribuicao_Linux= 0;
-    
-    programas_Do_Repositorio=0;
-    
-    
-    //PARA O VERTOR DE VERSOES DO KERNEL
-    /*this->sizeVersoes=p.sizeVersoes;
-    
-    versoes=new double[this->sizeVersoes];
-    for(int i=0;i<this->sizeVersoes;i++)
-        this->versoes[i]=p.versoes[i];*/
-}
-
-    
-    
-//CONSTRUTOR COM CONST E STATIC
-Linux::Linux(int numeroDeVersoesDoKernel,double versaoAtualDoDoKernelLinnux,string &dataDeCriacaoDoSistema,string COMANDOCHECAIP)
-:Distribuicao_Linux(),programas_Do_Repositorio()
-{
-    numeroDeVersoesDoKernel++;
-    
-    
-}
-//CONSTRUTOR COM CONST E STATIC
-
-//CONSTRUTOR DE CÓPIA COM CONST E STATIC
-Linux::Linux(const Linux &p,const Linux &q)
-:Distribuicao_Linux(),programas_Do_Repositorio()
-{
-    numeroDeVersoesDoKernel=p.numeroDeVersoesDoKernel;
-    
-    versaoAtualDoDoKernelLinnux=p.versaoAtualDoDoKernelLinnux;
-    
-    this->getChecaIP()=q.getChecaIP();
-    
-    this->getdataDeCriacaoDoSistema()=q.getdataDeCriacaoDoSistema();
-    
-    
-   
-}
-
-//----------------------------------FIM CONSTRUTORES----------------------------------------  
-
-//----------------------------------MÉTODOS STATIC---------------------------------------- 
-    //FUNÇÕES CONSTRUTOR COM CONST E STATIC
-    void Linux::showNumeroDeVersoesDoKernel()
-{
-    cout<<"Numero de versoes do Kernel Linux e ="<<numeroDeVersoesDoKernel<<endl;
-}
-    
-//----------------------------------FIM MÉTODOS STATIC----------------------------------------
-
-
-//FUNÇÃO 1
-void Linux::setEstado_Do_Sistema(int boot)
-{
-    if(boot==1){
-        this->ligado=true;
-    }else if(boot==0){
-        this->ligado=false;
-    }
+    cout<<"Nome do sistema...........:"<<nomeDoSistema<<endl;
+    cout<<"Arquitetura do sistema.....:"<<aquiteturaDoSistema<<" Bits"<<endl;
+    cout<<"Build:.....................:"<<build<<endl;
+    cout<<"Programa:.....................:"<<programa<<endl;
+    cout<<"........................."<<"\n";
+    cout<<"\n"<<endl;
 }
 
 
 
-bool Linux::getEstado_Do_Sistema()const
+void Linux::modificaPrograma(double alterarPrograma)
 {
-    if(ligado==1){
-        cout<<"\nSistema Operaccionnal Inicializado\n"<<endl;
-        
-    }else if(ligado==0){
-        cout<<"\nSistema Operaccionnal nao Inicializado, falha no boot\n"<<endl;
-        exit(0);
-        //return 0;
-    }
-}
-//FIM FUNÇÃO 1
-
-
-//FUNÇÃO 2
-
-void Linux::setEscolhaAdministrador(int comandoDoAdministrador)
-{
-    if(comandoDoAdministrador==1){
-        this->comandoDoAdministrador=true;
-    }else if(comandoDoAdministrador!=1){
-        this->comandoDoAdministrador=false;
-    }
-}
- 
-   
-int Linux::getEscolhaAdministrador()const
-{
-     if(comandoDoAdministrador==1){
-        cout<<"\nMostrando dados:\n";
-        
-    }else if (comandoDoAdministrador!=1){
-        cout<<"\nEncerrando sessao\n";
-      exit(0);
-    }
-}
-
-//FIMM FUNÇÃO 2
-
-
-//FUNÇÕES DO CONNSTRUTOR INFO
-void Linux::setNomeDoSistema(const string &nomeDoSistema_)
-{
-    this->nomeDoSistema = nomeDoSistema_;
-}
-
-string Linux::getNomeDoSistema()const
-{
-    return nomeDoSistema;
-}
-
-
-void Linux::setAquiteturaDoSistema(int aquiteturaDoSistema)
-{
-    if(aquiteturaDoSistema==64)
-        this->aquiteturaDoSistema=aquiteturaDoSistema;
-}
-
-int Linux::getAquiteturaDoSistema()const
-{
-    if(aquiteturaDoSistema==64){
-        return aquiteturaDoSistema;
-    }else if (aquiteturaDoSistema==32){
-        return aquiteturaDoSistema;
-    }else if (aquiteturaDoSistema==86){
-        return aquiteturaDoSistema;
-    }else{
-        return aquiteturaDoSistema==0;
-    }
-}
-
-//end funcooes set e get de info
-    
-    
-//FUNÇÕES CONSTRUTOR SOBRECARREGADO 1
-void Linux::setData_Da_Criacao(const string &Data_Da_Criacao_)
-{
-    this->Data_Da_Criacao = Data_Da_Criacao_;
-}
-    
-string Linux::getData_Da_Criacao()const
-{
-    return Data_Da_Criacao;
-}
-//FIM FUNÇÕES CONSTRUTOR SOBRECARREGADO 1
-
-    
-//FUNÇÕES CONSTRUTOR SOBRECARREGADO 2
-void Linux::setBuild(double build_)
-{
-    this->build=build_;
-}
- 
-   
-double Linux::getBuild()const
-{
-    return build;
-}
-//FIMFUNÇÕES CONSTRUTOR SOBRECARREGADO 2
-
-
-//FUNCAO SOBRRECARREGAda 1
-void Linux::checaSistema(string &nomeDoSistema)
-{
-    if(nomeDoSistema=="")
-        this->nomeDoSistema="Nome do sistema nao especificado";
-    else
-        this-> nomeDoSistema=nomeDoSistema;
-}
-
-
-string Linux::getNomeDoSistema()
-{
-    return nomeDoSistema;
-}
-
-
-int Linux::checaSistema(int id)
-{
-    if(id>=0)
-        this->id=id;
-    else
-        this->id=0;
-}
-
-
-int Linux::getId()const
-{
-    return id;
-}
-//FIM FUNCAO SOBRRECARREGA 1
-
-
-//FUNÇÕES CONSTRUTOR COM CONST E STATIC
-int Linux::numeroDeVersoesDoKernel=14;
-   
-double Linux::versaoAtualDoDoKernelLinnux=5.2;
-
-const string Linux::DATADECRIACAODOSISTEMA="1991";
-   
-   
-double Linux::getversaoAtualDoDoKernelLinnux()const
-{
-    return versaoAtualDoDoKernelLinnux;
-}
-
-string Linux::getChecaIP()const
-{
-    return COMANDOCHECAIP;
-}
-
-
-string Linux::getdataDeCriacaoDoSistema()const
-{
-    return DATADECRIACAODOSISTEMA;
-}
-
-
-//FUNÇÃO MOSTRA ARRAY COM VERSÕES DO KERNEL LINUX
-    
-//double Linux::versoesLinux[SIZEVERSOES]={1.0,1.2,2.0,2.2,2.4,2.6,3.0,3.1,3.2,4.1,4.2,5.0,5.1,5.2};
-void Linux::setVersoesKernel(const double versoesLinux[], int SIZEVERSOES)
-{
-    if(versoes!=0)
-    {
-        delete [] versoes;
-        versoes=0;
-    }
-    
-    sizeVersoes=SIZEVERSOES;
-    versoes = new double [sizeVersoes];
-    for(int i=0;i<sizeVersoes;i++)
-        versoes[i] = versoesLinux[i];
-}
-double Linux::Mostra_versoes_Do_Linux()const    
-{
-    cout<<"Versoes do kernel Linux: \n";
-    for(int i=0;i<sizeVersoes;i++)
-    {
-            
-        cout<<"versao: "<<versoes[i]<<'\n';
-        
-    }
+   if(alterarPrograma==true){
+       cout<<KernelLinux<<" alterado"<<"\n";
+   }else if(alterarPrograma!=true){
+       cout<<"Nenhuma alteracao no Kernel"<<endl;
        
-}
-
-    
-//FUNÇÃO INFO DA CLASSE PRINCIPAL
-void Linux::info_Principal()const
-{
-    cout<<"-------------Saida do Info da classe principal que recebe o info das outras duas classes-----------\n";
-    cout<<"Saida do array da classe Principal Linux\n";
-    /*Linux versoesDoKernel;
-    versoesDoKernel.Mostra_versoes_Do_Linux();*/
-    const static int SIZEVERSOES=14;
-    static double versoesLinux[SIZEVERSOES] = {1.0,1.2,2.0,2.2,2.4,2.6,3.0,3.1,3.2,4.1,4.2,5.0,5.1,5.2};
-    Linux tabela_De_Versoes_Linux (versoesLinux,SIZEVERSOES);
-    tabela_De_Versoes_Linux.Mostra_versoes_Do_Linux();
-    cout<<"\n";
-    
-    
-    cout<<"Saida do array da classe Distribuicao Linux\n";
-    const static int SIZEDIST=4;
-    string nomesDistri[SIZEDIST] = {"Linux","Ubuntu","Fedrora","Debian"};
-    DistribuicoesLinux  Distribuicao_Linux(nomesDistri,SIZEDIST);
-    
-    Distribuicao_Linux.infoDistribuicoes();
-    
-    cout<<"\n";
-    //delete obj1;
-    
-    cout<<"Saida do array da classe Repositorio Linux\n";    
-    const static int SIZEREPOSITORIO=3;
-    string repositorios_Linux[SIZEREPOSITORIO] = {"LibreOffice","VLC","Gimp"};
-    Repositorio programas_Do_Repositorio(repositorios_Linux,SIZEREPOSITORIO);
-    
-    programas_Do_Repositorio.info_Respositorio();
-    
-    cout<<"-------------Fim do Info da classe principal-----------\n";
-    //delete obj2;
-}
-
-    
-//Metodo ponteiro
-    
-void Linux::caracteristicaSistema(const string *ptr1 ,string *ptr2)const
-{
-    ptr2 -> append(nomeDoSistema); 
-    ptr2 -> append(" e ");
-    ptr2 -> append(*ptr1);
-}
-
-    
-//Funçao para ponteiro private
-int Linux::recebePtr_Id()
-{
-    this->ptrID=&id;
-    return *ptrID;
+    }
 }
 
 
-//SOBRECARGA DE OPERADORES
-ostream &operator<<( ostream &output, const Linux &numero) 
+void Linux::exibeCodigoFonte(double visualizaCodigoFonte)
 {
-    output<<numero.build;
+   if(visualizaCodigoFonte==true){
+       cout<<" Exibindo "<<codigoFonte<<"\n";
+   }else if(visualizaCodigoFonte!=true){
+       cout<<"O codigo fonte nao pode ser exibido"<<endl;
+       
+    }
+}
+
+
+
+//sobrecarga de operadores
+ostream &operator<<( ostream &output, const Linux &copia) 
+{
+    output<<"Nome do sistema Operacional: "<<copia.nomeDoSistema<<" Build: "<<copia.build<<" Arquitetura: "<<copia.aquiteturaDoSistema<<" Bits"<<endl;
     return output;
 }
 
 
-const Linux &Linux::operator=(const Linux &right)
+const Linux &Linux::Linux::operator= (const Linux &right)
 {
-    if(&right != this)
+    if (&right!=this)
     {
-        //
-        //
-        if( sizeVersoes != right.sizeVersoes )
-        {
-            delete [] versoes;
-            sizeVersoes = right.sizeVersoes;
-            versoes = new double[sizeVersoes];
-        }
-    
-        for(int i=0; i<sizeVersoes; i++)
-            versoes[i] = right.versoes[i];
+        destruir();
+        
+        inicializar(right.nomeDoSistema,right.aquiteturaDoSistema,right.comandoDoAdministrador,right.build,right.ligado,right.programa);
     }
-     return *this;   
+    return *this;
 }
 
 
 bool Linux::operator==(const Linux &right)const
 {
-    if(build!=right.build){
+    if(nomeDoSistema!=right.nomeDoSistema){
         return false;
     }else{
         return true;
@@ -430,61 +97,14 @@ bool Linux::operator==(const Linux &right)const
 
 bool Linux::operator!=(const Linux &right)const
  {
-    return! (*this==right);//Invvoca o operadorr ==
+    return! (*this==right);
  }
 
 
-double &Linux::operator[] (int subscript)
-{
-    if(subscript< 0 || subscript>= sizeVersoes)
-    {
-        cerr<<"\nError: subscript " <<subscript
-            <<"out of range"<<endl;
-        exit(1);
-    }
-    return versoes[subscript];
-}
 
 
-double Linux::operator[] (int subscript)const
-{
-    if(subscript< 0 || subscript>= sizeVersoes)
-    {
-        cerr<<"\nError: subscript " <<subscript
-            <<"out of range CONST OBJECT\n"<<endl;
-        exit(1);
-    }
-    return versoes[subscript];
-}
-
-
-bool Linux::operator<(const Linux &right)
-{
-    
-    return build<right.build;
-}
-
-
-bool Linux::operator&&(const Linux &right)const
-{
-    if(nomeDoSistema==right.nomeDoSistema && aquiteturaDoSistema==right.aquiteturaDoSistema){
-        return true;
-    }else{
-        return false;
-    }
-        
-}      
-//FIM SOBRECARGA DE OPERADORES
 Linux::~Linux()
 {
-    
-    
-    
-    
-    //delete [] versoesLinux;
-    
-    
-    
-    
-    
+    destruir();
 }
+
